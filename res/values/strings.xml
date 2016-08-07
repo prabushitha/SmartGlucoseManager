@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartGlucoseManager</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Reminder">Reminder_String</string>
+    <string name="strReminder">Reminder</string>
+    <string name="title_activity_remind">RemindActivity</string>
+    <string name="reminder_title">Reminder</string>
+    <string name="method_button_click">onButtonPress</string>
+
+</resources>
