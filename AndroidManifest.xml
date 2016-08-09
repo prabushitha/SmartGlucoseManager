@@ -26,6 +26,18 @@
             android:name=".RemindActivity"
             android:label="@string/title_activity_remind" >
         </activity>
+        <activity
+            android:name=".TestingActivity"
+            android:label="@string/title_activity_testing" >
+        </activity>
+
+        <receiver android:name=".AlarmReceiver" >
+        </receiver>
+
+        <activity
+            android:name=".GlucoseEntryActivity"
+            android:label="@string/title_activity_glucose_entry" >
+        </activity>
     </application>
 
 </manifest>

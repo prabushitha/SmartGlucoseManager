@@ -1,24 +1,22 @@
 package com.whileloop.smartglucosemanager;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class RemindActivity extends Activity {
+public class GlucoseEntryActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_remind);
+		setContentView(R.layout.activity_glucose_entry);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.remind, menu);
+		getMenuInflater().inflate(R.menu.glucose_entry, menu);
 		return true;
 	}
 
@@ -33,19 +31,4 @@ public class RemindActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	//program logic
-    //Remind menu button click
-    public void onButtonPress(View v){
-    	Intent i;
-    	switch (v.getId()) {
-			case R.id.btnTesting:
-				i = new Intent(this,TestingActivity.class);
-				startActivity(i);
-				break;
-
-			default:
-				break;
-		}
-    }
 }

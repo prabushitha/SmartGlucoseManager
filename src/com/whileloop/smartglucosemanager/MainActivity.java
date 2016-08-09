@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -35,9 +34,22 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+    //program logic
+    //Main Menu button click
     public void onButtonPress(View v){
-    	Intent i = new Intent(this,RemindActivity.class);
-    	startActivity(i);
+    	Intent i;
+    	switch (v.getId()) {
+			case R.id.button1:
+				i = new Intent(this,RemindActivity.class);
+				startActivity(i);
+			break;
+			case R.id.entrybtn:
+				i = new Intent(this,GlucoseEntryActivity.class);
+				startActivity(i);
+			break;
+
+		default:
+			break;
+		}
     }
 }

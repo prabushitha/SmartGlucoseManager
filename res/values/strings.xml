@@ -9,5 +9,13 @@
     <string name="title_activity_remind">RemindActivity</string>
     <string name="reminder_title">Reminder</string>
     <string name="method_button_click">onButtonPress</string>
+    <string name="testing">Testing</string>
+    <string name="insulin">Insulin &amp; Medication</string>
+    <string name="meal">Meal</string>
+    <string name="exercises">Excercises</string>
+    <string name="title_activity_testing">TestingActivity</string>
+    <string name="monday">Monday</string>
+    <string name="change">Change</string>
+    <string name="title_activity_glucose_entry">GlucoseEntryActivity</string>
 
 </resources>

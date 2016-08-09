@@ -24,4 +24,15 @@
         android:onClick="@string/method_button_click"
         android:text="@string/strReminder" />
 
+    <Button
+        android:id="@+id/entrybtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_marginLeft="34dp"
+        android:layout_toRightOf="@+id/button1"
+        android:onClick="@string/method_button_click"
+        android:text="Glucose Entry" />
+
 </RelativeLayout>

@@ -9,8 +9,43 @@
     tools:context="com.whileloop.smartglucosemanager.RemindActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/strReminder" />
+
+    <Button
+        android:id="@+id/btnTesting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:onClick="@string/method_button_click"
+        android:text="@string/testing" />
+
+    <Button
+        android:id="@+id/btnInsulin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTesting"
+        android:layout_centerHorizontal="true"
+        android:text="@string/insulin" />
+
+    <Button
+        android:id="@+id/btnMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnInsulin"
+        android:layout_centerHorizontal="true"
+        android:text="@string/meal" />
+
+    <Button
+        android:id="@+id/btnExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnMeal"
+        android:layout_centerHorizontal="true"
+        android:text="@string/exercises" />
 
 </RelativeLayout>
