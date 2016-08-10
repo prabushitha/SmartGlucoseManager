@@ -1,5 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,17 +18,20 @@
         android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="date"
+        android:text="2016-02-04"
         tools:ignore="RtlHardcoded" >
-        <requestFocus />
-    </EditText>/>
+
+        <requestFocus></requestFocus>
+        </EditText>
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText1"
+        android:ems="10"
         android:inputType="time"
-        android:ems="10" />
+        android:text="07:00" />
 
     <EditText
         android:id="@+id/editText3"
@@ -37,78 +40,30 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/editText2"
         android:layout_below="@+id/editText2"
-        android:ems="10" />
-
-    <Button
-        android:id="@+id/button2"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:text="Beore Lunch" />
-
-    <Button
-        android:id="@+id/button3"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:text="After Lunch" />
+        android:ems="10"
+        android:text="BG (mg dl)" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/editText1"
-        android:background="#C7C7C7"
         android:layout_below="@+id/textView1"
+        android:background="#C7C7C7"
         android:paddingLeft="100dp"
         android:text="Glucose Entry" />
-
-    <Button
-        android:id="@+id/button4"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button3"
-        android:layout_alignRight="@+id/button3"
-        android:layout_below="@+id/button3"
-        android:text="Before Dinner" />
-
-    <Button
-        android:id="@+id/button5"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_alignRight="@+id/button4"
-        android:layout_below="@+id/button4"
-        android:text="After Dinner" />
-
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:text="After Breakfast" />
 
     <Button
         android:id="@+id/button6"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button5"
         android:background="#000000"
         android:text="Save"
         android:textColor="#FFFFFF" />
@@ -117,10 +72,66 @@
         android:id="@+id/textView1"
         android:layout_width="500dp"
         android:layout_height="30dp"
-        android:layout_alignLeft="@+id/editText2"
         android:layout_alignParentTop="true"
         android:background="#C7C7C7"
         android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+    android:shadowDx="1.5"
+    android:shadowDy="1.3"
+    android:shadowRadius="1.6"
+    android:textAllCaps="true"
         android:text="@string/smart_glucose_manager" />
 
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editText3" >
+        
+        
+        <RadioButton
+            android:id="@+id/radioBeforeBrekfast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:background="#ececec"
+            android:text="Before Breakfast" />
+
+        <RadioButton
+            android:id="@+id/radioAfterBreakfast"
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:background="#ececec"
+            android:text="After Breakfast" />
+        
+        <RadioButton
+            android:id="@+id/radioBeforeLunch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ececec"
+            android:text="Before Lunch" />
+        
+        <RadioButton
+            android:id="@+id/radioAfterLunch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ececec"
+            android:text="After Lunch" />
+        
+        <RadioButton
+            android:id="@+id/radioBeforeDinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ececec"
+            android:text="Before Dinner" />
+        
+        <RadioButton
+            android:id="@+id/radioAfterDinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ececec"
+            android:text="After Dinner" />
+           
+    </RadioGroup>
 </RelativeLayout>
