@@ -17,5 +17,6 @@
     <string name="monday">Monday</string>
     <string name="change">Change</string>
     <string name="title_activity_glucose_entry">GlucoseEntryActivity</string>
+    <string name="smart_glucose_manager">Smart Glucose Manager</string>
 
 </resources>
