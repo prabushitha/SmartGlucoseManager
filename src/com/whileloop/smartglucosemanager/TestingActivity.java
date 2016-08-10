@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,6 +31,8 @@ public class TestingActivity extends Activity implements OnClickListener{
 	static final int TIME_DIALOG_ID = 999;
 	private Button change_btn1,change_btn2,change_btn3,change_btn4;
 	private TextView time_txt1,time_txt2,time_txt3,time_txt4;
+	private CheckBox[] days = new CheckBox[7];
+	DatabaseHelper databaseHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,14 @@ public class TestingActivity extends Activity implements OnClickListener{
 		time_txt2 = (TextView)findViewById(R.id.textViewTime2);
 		time_txt3 = (TextView)findViewById(R.id.textViewTime3);
 		time_txt4 = (TextView)findViewById(R.id.textViewTime4);
+		//Checkboxes
+		days[0] = (CheckBox)findViewById(R.id.checkMon);
+		days[1] = (CheckBox)findViewById(R.id.checkTue);
+		days[2] = (CheckBox)findViewById(R.id.checkWed);
+		days[3] = (CheckBox)findViewById(R.id.checkThu);
+		days[4] = (CheckBox)findViewById(R.id.checkFri);
+		days[5] = (CheckBox)findViewById(R.id.checkSat);
+		days[6] = (CheckBox)findViewById(R.id.checkSun);
 		//getting change buttons from the view
 		change_btn1 = (Button)findViewById(R.id.btnChange1);
 		change_btn2 = (Button)findViewById(R.id.btnChange2);
@@ -53,6 +64,9 @@ public class TestingActivity extends Activity implements OnClickListener{
 		change_btn3.setOnClickListener(this);
 		change_btn4.setOnClickListener(this);
 		
+		//Database Helper
+		databaseHelper = new DatabaseHelper(this);
+		
 		//Creating an intent for AlarmReceiver classs
 		myIntent = new Intent(this,AlarmReceiver.class);
 		
@@ -61,6 +75,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 		ToggleButton toggle1 = (ToggleButton) findViewById(R.id.toggleTime1);
 		toggle1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		    	
 		        if (isChecked) {
 		        	Log.e("Toggle 1", "ON:"+hours[0]+"-"+minutes[0]);
 		        	//Set time to calendar
@@ -76,6 +91,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 		        	alarmManager.cancel(pending_intent1);
 		            // The toggle is disabled
 		        }
+		        createAlarmEntry(0,0,hours[0],minutes[0],isChecked);
 		    }
 		});
 		//onOFF alarm toggle 2
@@ -97,6 +113,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 				        alarmManager.cancel(pending_intent2);
 				            // The toggle is disabled
 				       }
+				      createAlarmEntry(1,0,hours[1],minutes[1],isChecked);
 				   }
 			});
 		//onOFF alarm toggle 3
@@ -118,6 +135,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 			        	alarmManager.cancel(pending_intent3);
 			            // The toggle is disabled
 			        }
+			        createAlarmEntry(2,0,hours[2],minutes[2],isChecked);
 			    }
 			});
 		//onOFF alarm toggle 4
@@ -139,11 +157,31 @@ public class TestingActivity extends Activity implements OnClickListener{
 			        	alarmManager.cancel(pending_intent4);
 			            // The toggle is disabled
 			        }
+			        createAlarmEntry(3,0,hours[3],minutes[3],isChecked);
 			    }
 			});	
 		
 	}
-
+	private void createAlarmEntry(int id,int type,int hour,int minute,boolean isSet){
+		AlarmEntry alarmEntry = new AlarmEntry();
+		alarmEntry.setId(id);
+    	alarmEntry.setType(type);
+    	alarmEntry.setTime(hour, minute);
+    	if(isSet){
+    		alarmEntry.setStatus("ON");
+    	}else{
+    		alarmEntry.setStatus("OFF");
+    	}
+    	for(int i=1;i<=days.length;i++){
+    		String status = "OFF";
+    		if(days[i-1].isChecked()){
+    			status = "ON";
+    		}
+    		alarmEntry.setWeekInfo(i, status);
+    	}
+    	databaseHelper.updateAlarmEntry(alarmEntry);
+    	
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

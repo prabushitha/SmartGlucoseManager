@@ -8,17 +8,47 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
-	private static final int DATABASE_VERSION=1;
+	private static final int DATABASE_VERSION=3;
 	private static final String DATABASE_NAME="GlucoseEntry.db";
-	private static final String TABLE_NAME="glucoseEntry";
-	private static final String COLUMN_ID="id";
-	private static final String COLUMN_DATE="add_date";
-	private static final String COLUMN_TIME="add_time";
-	private static final String COLUMN_BG="bg";
-	private static final String COLUMN_TIME_OF_EVENT="time_of_event";
+	//glucose entry (GE)
+	private static final String TABLE_GE="glucoseEntry";
+	private static final String GE_ID="id";
+	private static final String GE_DATE="add_date";
+	private static final String GE_TIME="add_time";
+	private static final String GE_BG="bg";
+	private static final String GE_TIME_OF_EVENT="time_of_event";
+	
+	//alarm test (AT)
+	private static final String TABLE_AT="alarmTime";
+	private static final String AT_ID = "id";
+	private static final String AT_TYPE = "type"; //TEST,INSULIN,MEAL,EXERCISE
+	private static final String AT_STATUS = "status";//ON,OFF
+	private static final String AT_TIME = "a_time";
+	private static final String AT_MON = "d_mon";//ON,OFF
+	private static final String AT_TUE = "d_tue";
+	private static final String AT_WED = "d_wed";
+	private static final String AT_THU = "d_thu";
+	private static final String AT_FRI = "d_fri";
+	private static final String AT_SAT = "d_sat";
+	private static final String AT_SUN = "d_sun";
+	
 	SQLiteDatabase db;
 	
-	private static final String TABLE_CREATE = "create table glucoseEntry (id integer primary key not null, add_date text not null,add_time text not null,bg text not null,time_of_event text not null );";
+	private static final String TABLE_GE_CREATE = "create table glucoseEntry (id integer primary key not null, add_date text not null,add_time text not null,bg text not null,time_of_event text not null );";
+	private static final String TABLE_AT_CREATE = "create table "+TABLE_AT+
+			" ("+
+			AT_ID+" integer primary key not null, "+
+			AT_TYPE+" text not null,"+
+			AT_STATUS+" text not null,"+
+			AT_TIME+" text not null,"+
+			AT_MON+" text not null,"+
+			AT_TUE+" text not null,"+
+			AT_WED+" text not null,"+
+			AT_THU+" text not null,"+
+			AT_FRI+" text not null,"+
+			AT_SAT+" text not null,"+
+			AT_SUN+" text not null"+
+			");";
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		
@@ -26,43 +56,105 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(TABLE_CREATE);
+		db.execSQL(TABLE_GE_CREATE);
+		db.execSQL(TABLE_AT_CREATE);
 		this.db=db;
+		initAlarmTimeTable(db); //add records to the alarm timetable
 		
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		String query="DROP TABLE IF EXISTS"+TABLE_NAME;
+		String query="DROP TABLE IF EXISTS "+TABLE_GE+";"+
+					 "DROP TABLE IF EXISTS "+TABLE_AT+";";
 		db.execSQL(query);
 		this.onCreate(db);
 		
 	}
-
-	public void insertGlucoseEntry(GlucoseEntry e) {
-		db=this.getWritableDatabase();
-		ContentValues contentValues=new ContentValues();
-		String query="select * from glucoseEntry";
+	//private operations
+	private void initAlarmTimeTable(SQLiteDatabase db){
+		//db=this.getWritableDatabase();
+		final int NUMBER_OF_ALARMS = 13;
+		final int[] TYPE_AMOUNTS = {4,4,4,1};
+		for(int i=1;i<=NUMBER_OF_ALARMS;i++){
+			AlarmEntry e = new AlarmEntry();
+			e.setId(i);
+			if(i<=TYPE_AMOUNTS[0]){
+				e.setType(0);
+			}else if(i<=TYPE_AMOUNTS[0]+TYPE_AMOUNTS[1]){
+				e.setType(1);
+			}else if(i<=TYPE_AMOUNTS[0]+TYPE_AMOUNTS[1]+TYPE_AMOUNTS[2]){
+				e.setType(2);
+			}else if(i<=TYPE_AMOUNTS[0]+TYPE_AMOUNTS[1]+TYPE_AMOUNTS[2]+TYPE_AMOUNTS[3]){
+				e.setType(3);
+			}
+			ContentValues contentValues=new ContentValues();
+			contentValues.put(AT_ID, e.getId());
+			contentValues.put(AT_TYPE, e.getType());
+			contentValues.put(AT_STATUS, e.getStatus());
+			contentValues.put(AT_TIME, e.getTime());
+			contentValues.put(AT_MON, e.getWeekInfo(1));
+			contentValues.put(AT_TUE, e.getWeekInfo(2));
+			contentValues.put(AT_WED, e.getWeekInfo(3));
+			contentValues.put(AT_THU, e.getWeekInfo(4));
+			contentValues.put(AT_FRI, e.getWeekInfo(5));
+			contentValues.put(AT_SAT, e.getWeekInfo(6));
+			contentValues.put(AT_SUN, e.getWeekInfo(7));
+			db.insert(TABLE_AT, null, contentValues);
+		}
+		
+		printTable(TABLE_AT,5);
+	}
+	private void printTable(String table,int columns){
+		db = this.getReadableDatabase();
+		String query="select * from "+table;
 		Cursor cursor=db.rawQuery(query, null);
-		//
+		System.out.println("---TABLE "+table+"---");
 		if (cursor.moveToFirst()) {
-			
             do {
-            	String ss = cursor.getString(0)+cursor.getString(1);
+            	String ss = "";
+            	for(int i=0;i<columns;i++){
+            		ss += "  "+cursor.getString(i);
+            	}
                 System.out.println(ss);
             } while (cursor.moveToNext());
         }
-		//
+		System.out.println("--------------------");
+	}
+	//public operations
+	public void insertGlucoseEntry(GlucoseEntry e) {
+		db=this.getWritableDatabase();
+		ContentValues contentValues=new ContentValues();
+		String query="select * from "+TABLE_GE;
+		Cursor cursor=db.rawQuery(query, null);
 		int count=cursor.getCount();
-		contentValues.put(COLUMN_ID,count+1);
+		contentValues.put(GE_ID,count+1);
 		//contentValues.put(COLUMN_ID,e.getId());
-		contentValues.put(COLUMN_DATE, e.getDate());
-		contentValues.put(COLUMN_TIME, e.getTime());
-		contentValues.put(COLUMN_BG, e.getBg());
-		contentValues.put(COLUMN_TIME_OF_EVENT, e.getTimeOfEvent());
-		db.insert(TABLE_NAME, null, contentValues);
-		
+		contentValues.put(GE_DATE, e.getDate());
+		contentValues.put(GE_TIME, e.getTime());
+		contentValues.put(GE_BG, e.getBg());
+		contentValues.put(GE_TIME_OF_EVENT, e.getTimeOfEvent());
+		db.insert(TABLE_GE, null, contentValues);
+		printTable(TABLE_GE,5);
 		
 	}
+	public void updateAlarmEntry(AlarmEntry e){
+		db=this.getWritableDatabase();
+		ContentValues contentValues=new ContentValues();
+		
+		contentValues.put(AT_TYPE, e.getType());
+		contentValues.put(AT_STATUS, e.getStatus());
+		contentValues.put(AT_TIME, e.getTime());
+		contentValues.put(AT_MON, e.getWeekInfo(1));
+		contentValues.put(AT_TUE, e.getWeekInfo(2));
+		contentValues.put(AT_WED, e.getWeekInfo(3));
+		contentValues.put(AT_THU, e.getWeekInfo(4));
+		contentValues.put(AT_FRI, e.getWeekInfo(5));
+		contentValues.put(AT_SAT, e.getWeekInfo(6));
+		contentValues.put(AT_SUN, e.getWeekInfo(7));
+		db.update(TABLE_AT, contentValues, "id="+e.getId(), null);
+		printTable(TABLE_AT,3);
+	}
+	
 
 }
