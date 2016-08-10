@@ -11,14 +11,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME="GlucoseEntry.db";
 	private static final String TABLE_NAME="glucoseEntry";
 	private static final String COLUMN_ID="id";
-	private static final String COLUMN_DATE="date";
-	private static final String COLUMN_TIME="time";
+	private static final String COLUMN_DATE="add_date";
+	private static final String COLUMN_TIME="add_time";
 	private static final String COLUMN_BG="bg";
 	private static final String COLUMN_TIME_OF_EVENT="time_of_event";
 	SQLiteDatabase db;
 	
-	private static final String TABLE_CREATE="create table glucoseEntry (id integer primary key not null auto_increment,date text not null,time text not null,bg text not null,time_of_event text not null );";
-			
+	private static final String TABLE_CREATE = "create table glucoseEntry (id integer primary key not null, add_date text not null,add_time text not null,bg text not null,time_of_event text not null );";
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		

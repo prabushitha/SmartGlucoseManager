@@ -2,6 +2,7 @@ package com.whileloop.smartglucosemanager;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +13,12 @@ import android.widget.RadioGroup;
 public class GlucoseEntryActivity extends Activity {
 	private RadioGroup radioGroup;
 	private RadioButton radioButton;
-	DatabaseHelper databaseHelper=new DatabaseHelper(this);
+	DatabaseHelper databaseHelper;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_glucose_entry);
+		databaseHelper = new DatabaseHelper(this);
 	}
 
 	@Override
@@ -54,12 +56,14 @@ public class GlucoseEntryActivity extends Activity {
             String time_of_event=radioButton.getText().toString();
             
             GlucoseEntry glucoseEntry=new GlucoseEntry();
+            glucoseEntry.setId(1);
             glucoseEntry.setDate(date);
-            glucoseEntry.setBg(time);
+            glucoseEntry.setTime(time);
             glucoseEntry.setBg(bg);
             glucoseEntry.setTimeOfEvent(time_of_event);
             
             databaseHelper.insertGlucoseEntry(glucoseEntry);
+            Log.e("Save Button", "Save clicked");
 
 		}
 	
