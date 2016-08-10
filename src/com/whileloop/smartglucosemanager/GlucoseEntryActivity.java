@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class GlucoseEntryActivity extends Activity {
-
+	private RadioGroup radioGroup;
+	private RadioButton radioButton;
+	DatabaseHelper databaseHelper=new DatabaseHelper(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,4 +37,32 @@ public class GlucoseEntryActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void onSaveButtonClick(View v){
+		if(v.getId()==R.id.savebutton){
+			radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
+			EditText dateText=(EditText)findViewById(R.id.dateText);
+			EditText timeText=(EditText)findViewById(R.id.timeText);
+			EditText bgText=(EditText)findViewById(R.id.bgText);
+			
+			int selectedId = radioGroup.getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedId);
+            
+            String date=dateText.getText().toString();
+            String time=timeText.getText().toString();
+            String bg=bgText.getText().toString();
+            String time_of_event=radioButton.getText().toString();
+            
+            GlucoseEntry glucoseEntry=new GlucoseEntry();
+            glucoseEntry.setDate(date);
+            glucoseEntry.setBg(time);
+            glucoseEntry.setBg(bg);
+            glucoseEntry.setTimeOfEvent(time_of_event);
+            
+            databaseHelper.insertGlucoseEntry(glucoseEntry);
+
+		}
+	
+	}
+	
 }

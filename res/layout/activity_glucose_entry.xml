@@ -10,7 +10,7 @@
     tools:context="com.whileloop.smartglucosemanager.GlucoseEntryActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/dateText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
@@ -25,21 +25,21 @@
         </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/timeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/dateText"
         android:ems="10"
         android:inputType="time"
         android:text="07:00" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/bgText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignRight="@+id/timeText"
+        android:layout_below="@+id/timeText"
         android:ems="10"
         android:text="BG (mg dl)" />
 
@@ -48,14 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/editText1"
+        android:layout_alignRight="@+id/dateText"
         android:layout_below="@+id/textView1"
         android:background="#C7C7C7"
         android:paddingLeft="100dp"
         android:text="Glucose Entry" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/savebutton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="100dp"
         android:layout_marginLeft="10dp"
@@ -83,11 +83,11 @@
         android:text="@string/smart_glucose_manager" />
 
     <RadioGroup
-        android:id="@+id/radio"
+        android:id="@+id/radiogroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/editText3" >
+        android:layout_below="@+id/bgText" >
         
         
         <RadioButton

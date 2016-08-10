@@ -27,6 +27,7 @@ public final class R {
     public static final class id {
         public static final int RelativeLayout1=0x7f080000;
         public static final int action_settings=0x7f080027;
+        public static final int bgText=0x7f080004;
         public static final int btnChange1=0x7f080020;
         public static final int btnChange2=0x7f08001f;
         public static final int btnChange3=0x7f080022;
@@ -36,7 +37,6 @@ public final class R {
         public static final int btnMeal=0x7f080012;
         public static final int btnTesting=0x7f080010;
         public static final int button1=0x7f08000e;
-        public static final int button6=0x7f080006;
         public static final int checkFri=0x7f080018;
         public static final int checkMon=0x7f080015;
         public static final int checkSat=0x7f08001a;
@@ -44,23 +44,23 @@ public final class R {
         public static final int checkThu=0x7f080017;
         public static final int checkTue=0x7f080014;
         public static final int checkWed=0x7f080016;
-        public static final int editText1=0x7f080001;
-        public static final int editText2=0x7f080003;
-        public static final int editText3=0x7f080004;
+        public static final int dateText=0x7f080001;
         public static final int entrybtn=0x7f08000f;
-        public static final int radio=0x7f080007;
         public static final int radioAfterBreakfast=0x7f080009;
         public static final int radioAfterDinner=0x7f08000d;
         public static final int radioAfterLunch=0x7f08000b;
         public static final int radioBeforeBrekfast=0x7f080008;
         public static final int radioBeforeDinner=0x7f08000c;
         public static final int radioBeforeLunch=0x7f08000a;
+        public static final int radiogroup=0x7f080007;
+        public static final int savebutton=0x7f080006;
         public static final int textView1=0x7f080002;
         public static final int textView2=0x7f080005;
         public static final int textViewTime1=0x7f080021;
         public static final int textViewTime2=0x7f080026;
         public static final int textViewTime3=0x7f080025;
         public static final int textViewTime4=0x7f080024;
+        public static final int timeText=0x7f080003;
         public static final int toggleTime1=0x7f08001c;
         public static final int toggleTime2=0x7f08001b;
         public static final int toggleTime3=0x7f08001d;
