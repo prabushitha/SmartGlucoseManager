@@ -2,6 +2,7 @@ package com.whileloop.smartglucosemanager;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -41,7 +42,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void insertGlucoseEntry(GlucoseEntry e) {
 		db=this.getWritableDatabase();
 		ContentValues contentValues=new ContentValues();
-		contentValues.put(COLUMN_ID,e.getId());
+		String query="select * from glucoseEntry";
+		Cursor cursor=db.rawQuery(query, null);
+		//
+		if (cursor.moveToFirst()) {
+			
+            do {
+            	String ss = cursor.getString(0)+cursor.getString(1);
+                System.out.println(ss);
+            } while (cursor.moveToNext());
+        }
+		//
+		int count=cursor.getCount();
+		contentValues.put(COLUMN_ID,count+1);
+		//contentValues.put(COLUMN_ID,e.getId());
 		contentValues.put(COLUMN_DATE, e.getDate());
 		contentValues.put(COLUMN_TIME, e.getTime());
 		contentValues.put(COLUMN_BG, e.getBg());
