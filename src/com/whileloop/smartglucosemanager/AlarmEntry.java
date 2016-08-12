@@ -4,12 +4,12 @@ public class AlarmEntry {
 	private int id;
 	private String type;
 	private String status;
-	private String time;//in hours
+	private String time;
 	
 	
-	private final String ALARM_ON = "ON";
-	private final String ALARM_OFF = "OFF";
-	private final String[] TYPES = {"TEST","INSULIN","MEAL","EXERCISE"};
+	public static final String ALARM_ON = "ON";
+	public static final String ALARM_OFF = "OFF";
+	public static final String[] TYPES = {"TEST","INSULIN","MEAL","EXERCISE"};
 	
 	private String[] week_info;
 	public AlarmEntry(){
@@ -28,6 +28,17 @@ public class AlarmEntry {
 	public String getWeekInfo(int day){
 		return week_info[day-1];
 	}
+	public int[] getAllWeekInfoStatus(){
+		//0th index to monday etc
+		int[] days = new int[week_info.length];
+		for(int i = 0;i<week_info.length;i++){
+			days[i] = 0;
+			if(week_info[i].equals(ALARM_ON)){
+				days[i] = 1;
+			}
+		}
+		return days;
+	}
 	public int getId() {
 		return id;
 	}
@@ -42,6 +53,16 @@ public class AlarmEntry {
 			this.type = TYPES[type];
 		}
 	}
+	public void setType(String type){
+		boolean isType = false;
+		for(int i=0;i<TYPES.length;i++){
+			if(type.equals(TYPES[i])){
+				isType = true;
+				break;
+			}
+		}
+		if(isType)this.type=type;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -53,6 +74,9 @@ public class AlarmEntry {
 	}
 	public void setTime(int hours,int minutes) {
 		this.time = hours+":"+minutes;
+	}
+	public void setTime(String time){
+		this.time = time;
 	}
 	public int getHours(){
 		String[] hoursMinutes = this.time.split(":");

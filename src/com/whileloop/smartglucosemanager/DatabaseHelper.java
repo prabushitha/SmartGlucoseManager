@@ -8,10 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
-	private static final int DATABASE_VERSION=3;
-	private static final String DATABASE_NAME="GlucoseEntry.db";
+	private static final int DATABASE_VERSION=5;//3;
+	private static final String DATABASE_NAME="Glucoseappz.db";//"GlucoseEntry.db";
 	//glucose entry (GE)
 	private static final String TABLE_GE="glucoseEntry";
+	private static final int GE_NUM_COLUMNS = 5;
 	private static final String GE_ID="id";
 	private static final String GE_DATE="add_date";
 	private static final String GE_TIME="add_time";
@@ -20,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	//alarm test (AT)
 	private static final String TABLE_AT="alarmTime";
+	private static final int AT_NUM_COLUMNS = 11;
 	private static final String AT_ID = "id";
 	private static final String AT_TYPE = "type"; //TEST,INSULIN,MEAL,EXERCISE
 	private static final String AT_STATUS = "status";//ON,OFF
@@ -31,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String AT_FRI = "d_fri";
 	private static final String AT_SAT = "d_sat";
 	private static final String AT_SUN = "d_sun";
+	
 	
 	SQLiteDatabase db;
 	
@@ -73,7 +76,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	//private operations
 	private void initAlarmTimeTable(SQLiteDatabase db){
-		//db=this.getWritableDatabase();
+		if(db == null || !db.isOpen()) {
+			db=this.getWritableDatabase();
+	    }
+		
 		final int NUMBER_OF_ALARMS = 13;
 		final int[] TYPE_AMOUNTS = {4,4,4,1};
 		for(int i=1;i<=NUMBER_OF_ALARMS;i++){
@@ -106,7 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		printTable(TABLE_AT,5);
 	}
 	private void printTable(String table,int columns){
-		db = this.getReadableDatabase();
+		if(db == null || !db.isOpen()) {
+			db = this.getReadableDatabase();
+	    }
+		
 		String query="select * from "+table;
 		Cursor cursor=db.rawQuery(query, null);
 		System.out.println("---TABLE "+table+"---");
@@ -124,6 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	//public operations
 	public void insertGlucoseEntry(GlucoseEntry e) {
 		db=this.getWritableDatabase();
+		
 		ContentValues contentValues=new ContentValues();
 		String query="select * from "+TABLE_GE;
 		Cursor cursor=db.rawQuery(query, null);
@@ -135,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		contentValues.put(GE_BG, e.getBg());
 		contentValues.put(GE_TIME_OF_EVENT, e.getTimeOfEvent());
 		db.insert(TABLE_GE, null, contentValues);
-		printTable(TABLE_GE,5);
+		printTable(TABLE_GE,GE_NUM_COLUMNS);
 		
 	}
 	public void updateAlarmEntry(AlarmEntry e){
@@ -153,7 +163,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		contentValues.put(AT_SAT, e.getWeekInfo(6));
 		contentValues.put(AT_SUN, e.getWeekInfo(7));
 		db.update(TABLE_AT, contentValues, "id="+e.getId(), null);
-		printTable(TABLE_AT,3);
+		printTable(TABLE_AT,AT_NUM_COLUMNS);
+	}
+	public AlarmEntry getAlarmEntry(int id){
+		db = this.getReadableDatabase();
+		
+		String query="select * from "+TABLE_AT+" where "+AT_ID+"="+id;
+		Cursor cursor=db.rawQuery(query, null);
+		AlarmEntry alarmEntry = new AlarmEntry();
+		String[] column_data = new String[AT_NUM_COLUMNS];
+		if (cursor.moveToFirst()) {
+			for(int i=0;i<AT_NUM_COLUMNS;i++){
+				column_data[i] = cursor.getString(i);
+        	}
+        }
+		alarmEntry.setId(id);
+		alarmEntry.setType(column_data[1]);
+		alarmEntry.setStatus(column_data[2]);
+		alarmEntry.setTime(column_data[3]);
+		for(int i=0;i<7;i++){
+			alarmEntry.setWeekInfo(i+1, column_data[4+i]);
+		}
+		return alarmEntry;
+	}
+	public AlarmEntry[] getActiveAlarms(){
+		db = this.getReadableDatabase();
+		String query="select * from "+TABLE_AT+" where "+AT_STATUS+" = 'ON'";
+		Cursor cursor=db.rawQuery(query, null);
+		int count=cursor.getCount();
+		AlarmEntry[] alarmEntries = new AlarmEntry[count];
+		
+		if (cursor.moveToFirst()) {
+			int j = 0;
+            do {
+            	AlarmEntry alarmEntry = new AlarmEntry();
+        		String[] column_data = new String[AT_NUM_COLUMNS];
+        		for(int i=0;i<AT_NUM_COLUMNS;i++){
+        			column_data[i] = cursor.getString(i);
+                }
+        		alarmEntry.setId(Integer.parseInt(column_data[0]));
+        		alarmEntry.setType(column_data[1]);
+        		alarmEntry.setStatus(column_data[2]);
+        		alarmEntry.setTime(column_data[3]);
+        		for(int i=0;i<7;i++){
+        			alarmEntry.setWeekInfo(i+1, column_data[4+i]);
+        		}
+        		alarmEntries[j] = alarmEntry;
+        		j++;
+            } while (cursor.moveToNext());
+        }
+		
+		return alarmEntries;
 	}
 	
 

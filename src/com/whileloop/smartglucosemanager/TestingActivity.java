@@ -24,14 +24,17 @@ import android.widget.ToggleButton;
 
 public class TestingActivity extends Activity implements OnClickListener{
 	AlarmManager alarmManager;
-	Intent myIntent;
-	PendingIntent pending_intent1,pending_intent2,pending_intent3,pending_intent4;
+	final int NUMBER_OF_TIMES = 4;
+	final int ALARM_TYPE = 0;
 	private int[] hours = new int[4];
 	private int[] minutes = new int[4];
 	static final int TIME_DIALOG_ID = 999;
-	private Button change_btn1,change_btn2,change_btn3,change_btn4;
-	private TextView time_txt1,time_txt2,time_txt3,time_txt4;
+	private Intent[] myIntent = new Intent[4];
+	private PendingIntent[] pending_intents = new PendingIntent[4];
 	private CheckBox[] days = new CheckBox[7];
+	private Button[] changebtns = new Button[4];
+	private ToggleButton[] toggles = new ToggleButton[4];
+	private TextView[] textviews = new TextView[4];
 	DatabaseHelper databaseHelper;
 
 	@Override
@@ -42,10 +45,11 @@ public class TestingActivity extends Activity implements OnClickListener{
 		//Alarm manager
 		alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 		//Getting time text views
-		time_txt1 = (TextView)findViewById(R.id.textViewTime1);
-		time_txt2 = (TextView)findViewById(R.id.textViewTime2);
-		time_txt3 = (TextView)findViewById(R.id.textViewTime3);
-		time_txt4 = (TextView)findViewById(R.id.textViewTime4);
+		textviews[0] = (TextView)findViewById(R.id.textViewTime1);
+		textviews[1] = (TextView)findViewById(R.id.textViewTime2);
+		textviews[2] = (TextView)findViewById(R.id.textViewTime3);
+		textviews[3] = (TextView)findViewById(R.id.textViewTime4);
+		
 		//Checkboxes
 		days[0] = (CheckBox)findViewById(R.id.checkMon);
 		days[1] = (CheckBox)findViewById(R.id.checkTue);
@@ -55,117 +59,77 @@ public class TestingActivity extends Activity implements OnClickListener{
 		days[5] = (CheckBox)findViewById(R.id.checkSat);
 		days[6] = (CheckBox)findViewById(R.id.checkSun);
 		//getting change buttons from the view
-		change_btn1 = (Button)findViewById(R.id.btnChange1);
-		change_btn2 = (Button)findViewById(R.id.btnChange2);
-		change_btn3 = (Button)findViewById(R.id.btnChange3);
-		change_btn4 = (Button)findViewById(R.id.btnChange4);
-		change_btn1.setOnClickListener(this);
-		change_btn2.setOnClickListener(this);
-		change_btn3.setOnClickListener(this);
-		change_btn4.setOnClickListener(this);
+		changebtns[0] = (Button)findViewById(R.id.btnChange1);
+		changebtns[1] = (Button)findViewById(R.id.btnChange2);
+		changebtns[2] = (Button)findViewById(R.id.btnChange3);
+		changebtns[3] = (Button)findViewById(R.id.btnChange4);
+		
+		changebtns[0].setOnClickListener(this);
+		changebtns[1].setOnClickListener(this);
+		changebtns[2].setOnClickListener(this);
+		changebtns[3].setOnClickListener(this);
 		
 		//Database Helper
 		databaseHelper = new DatabaseHelper(this);
 		
-		//Creating an intent for AlarmReceiver classs
-		myIntent = new Intent(this,AlarmReceiver.class);
+		//Creating an intents for AlarmReceiver classs
+		myIntent[0] = new Intent(this,AlarmReceiver.class);
+		myIntent[1] = new Intent(this,AlarmReceiver.class);
+		myIntent[2] = new Intent(this,AlarmReceiver.class);
+		myIntent[3] = new Intent(this,AlarmReceiver.class);
 		
-		
-		//onOFF alarm toggle 1
-		ToggleButton toggle1 = (ToggleButton) findViewById(R.id.toggleTime1);
-		toggle1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		    	
-		        if (isChecked) {
-		        	Log.e("Toggle 1", "ON:"+hours[0]+"-"+minutes[0]);
-		        	//Set time to calendar
-		        	Calendar calendar = Calendar.getInstance();
-	            	calendar.set(Calendar.HOUR_OF_DAY, hours[0]);
-	            	calendar.set(Calendar.MINUTE,minutes[0]);
-		            // The toggle is enabled
-		        	pending_intent1 = PendingIntent.getBroadcast(TestingActivity.this, 
-	            			1, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-	            	alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pending_intent1);
-		        } else {
-		        	Log.e("Toggle 1", "OFF");
-		        	alarmManager.cancel(pending_intent1);
-		            // The toggle is disabled
-		        }
-		        createAlarmEntry(0,0,hours[0],minutes[0],isChecked);
-		    }
-		});
-		//onOFF alarm toggle 2
-		ToggleButton toggle2 = (ToggleButton) findViewById(R.id.toggleTime2);
-		toggle2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-				   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				      if (isChecked) {
-				    	Log.e("Toggle 2", "ON :"+hours[1]+"-"+minutes[1]);
-				        //Set time to calendar
-				        Calendar calendar = Calendar.getInstance();
-			            calendar.set(Calendar.HOUR_OF_DAY, hours[1]);
-			            calendar.set(Calendar.MINUTE,minutes[1]);
-				           // The toggle is enabled
-				        pending_intent2 = PendingIntent.getBroadcast(TestingActivity.this, 
-			            			2, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-			            alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pending_intent2);
-				      } else {
-				    	Log.e("Toggle 2", "OFF");
-				        alarmManager.cancel(pending_intent2);
-				            // The toggle is disabled
-				       }
-				      createAlarmEntry(1,0,hours[1],minutes[1],isChecked);
-				   }
-			});
-		//onOFF alarm toggle 3
-		ToggleButton toggle3 = (ToggleButton) findViewById(R.id.toggleTime3);
-		toggle3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		toggles[0] = (ToggleButton) findViewById(R.id.toggleTime1);
+		toggles[1] = (ToggleButton) findViewById(R.id.toggleTime2);
+		toggles[2] = (ToggleButton) findViewById(R.id.toggleTime3);
+		toggles[3] = (ToggleButton) findViewById(R.id.toggleTime4);
+		for(int i=0;i<4;i++){
+			AlarmEntry alarmEntry = databaseHelper.getAlarmEntry(i+1);
+			//set toggles checked
+			if(alarmEntry.getStatus().equals(AlarmEntry.ALARM_ON)){
+				toggles[i].setChecked(true);
+			}
+			//set days checked
+			if(i==0){
+				for(int j=0;j<days.length;j++){
+					if(alarmEntry.getWeekInfo(j+1).equals(AlarmEntry.ALARM_ON)){
+						days[j].setChecked(true);
+					}
+				}
+			}
+			hours[i] = alarmEntry.getHours();
+			minutes[i] = alarmEntry.getMinutes();
+			String alamTime = getNormalTime(hours[i],minutes[i]);
+			textviews[i].setText(alamTime);
+			
+			final int x = i;
+			//set toggle change listener
+			toggles[x].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {	
 			        if (isChecked) {
-			        	Log.e("Toggle 3", "ON:"+hours[2]+"-"+minutes[2]);
-			        	//Set time to calendar
-			        	Calendar calendar = Calendar.getInstance();
-		            	calendar.set(Calendar.HOUR_OF_DAY, hours[2]);
-		            	calendar.set(Calendar.MINUTE,minutes[2]);
-			            // The toggle is enabled
-			        	pending_intent3 = PendingIntent.getBroadcast(TestingActivity.this, 
-		            			3, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-		            	alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pending_intent3);
+			        	Log.e("Toggle 1", "ON:"+hours[x]+"-"+minutes[x]);
+			        	setAlarm(x+1);
 			        } else {
-			        	Log.e("Toggle 3", "OFF");
-			        	alarmManager.cancel(pending_intent3);
+			        	Log.e("Toggle 1", "OFF");
+			        	cancelAlarm(x+1);
 			            // The toggle is disabled
 			        }
-			        createAlarmEntry(2,0,hours[2],minutes[2],isChecked);
+			        createAlarmEntry(x+1,hours[x],minutes[x],isChecked);
 			    }
 			});
-		//onOFF alarm toggle 4
-		ToggleButton toggle4 = (ToggleButton) findViewById(R.id.toggleTime4);
-		toggle4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			        if (isChecked) {
-			        	Log.e("Toggle 4", "ON:"+hours[3]+"-"+minutes[3]);
-			        	//Set time to calendar
-			        	Calendar calendar = Calendar.getInstance();
-		            	calendar.set(Calendar.HOUR_OF_DAY, hours[3]);
-		            	calendar.set(Calendar.MINUTE,minutes[3]);
-			            // The toggle is enabled
-			        	pending_intent4 = PendingIntent.getBroadcast(TestingActivity.this, 
-		            			4, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-		            	alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pending_intent4);
-			        } else {
-			        	Log.e("Toggle 4", "OFF");
-			        	alarmManager.cancel(pending_intent4);
-			            // The toggle is disabled
-			        }
-			        createAlarmEntry(3,0,hours[3],minutes[3],isChecked);
-			    }
-			});	
-		
+			//set check box listener
+		}
+		for(int i=0;i<days.length;i++){
+			days[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					setAlarmDays();
+				}
+			});
+		} 
 	}
-	private void createAlarmEntry(int id,int type,int hour,int minute,boolean isSet){
+	private void createAlarmEntry(int id,int hour,int minute,boolean isSet){
 		AlarmEntry alarmEntry = new AlarmEntry();
 		alarmEntry.setId(id);
-    	alarmEntry.setType(type);
+    	alarmEntry.setType(ALARM_TYPE);
     	alarmEntry.setTime(hour, minute);
     	if(isSet){
     		alarmEntry.setStatus("ON");
@@ -180,7 +144,32 @@ public class TestingActivity extends Activity implements OnClickListener{
     		alarmEntry.setWeekInfo(i, status);
     	}
     	databaseHelper.updateAlarmEntry(alarmEntry);
-    	
+	}
+	private void setAlarmDays(){
+		for(int i=0;i<NUMBER_OF_TIMES;i++){
+			createAlarmEntry(i+1,hours[i],minutes[i],toggles[i].isChecked());
+		}
+	}
+	private void setAlarm(int id){
+		//Set time to calendar
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, hours[id-1]);
+		calendar.set(Calendar.MINUTE,minutes[id-1]);
+		myIntent[id-1].putExtra("id", id);
+		// The toggle is enabled
+		pending_intents[id-1] = PendingIntent.getBroadcast(TestingActivity.this, 
+		            			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pending_intents[id-1]);
+	}
+	private void cancelAlarm(int id){
+		PendingIntent intent;
+		if(pending_intents[id-1]!=null){
+			intent = pending_intents[id-1];
+		}else{
+			intent = PendingIntent.getBroadcast(TestingActivity.this, 
+        			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);
+		}
+		alarmManager.cancel(intent);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -208,18 +197,18 @@ public class TestingActivity extends Activity implements OnClickListener{
 		final int timeid;
 		final TextView currentText;
 		
-		if(v==change_btn1){
+		if(v==changebtns[0]){
 			timeid = 1;
-			currentText = time_txt1;
-		}else if(v == change_btn2){
+			currentText = textviews[0];
+		}else if(v == changebtns[1]){
 			timeid = 2;
-			currentText = time_txt2;
-		}else if(v==change_btn3){
+			currentText = textviews[1];
+		}else if(v==changebtns[2]){
 			timeid = 3;
-			currentText = time_txt3;
+			currentText = textviews[2];
 		}else{
 			timeid = 4;
-			currentText = time_txt4;
+			currentText = textviews[3];
 		}
 		OnTimeSetListener otsl = new TimePickerDialog.OnTimeSetListener() {
 			 
@@ -229,30 +218,33 @@ public class TestingActivity extends Activity implements OnClickListener{
             	//set time to array
             	hours[timeid-1] = hourOfDay;
             	minutes[timeid-1] = minute;
+            	//off the alarm
+            	toggles[timeid-1].setChecked(false);
                 // Display Selected time in textbox
             	String normalTime = getNormalTime(hourOfDay,minute);
             	currentText.setText(normalTime);
             	
-            }
-            public String getNormalTime( int hours, int minutes){
-            	String ampm = "AM";
-            	String hourZeros = "";
-            	String minuteZero = "";
-            	if(hours>=12){
-            		ampm = "PM";
-            	}
-            	if(hours>12){
-            		hours = hours%12;
-            	}
-            	if(hours==0)hours=12;
-            	if(hours<10)hourZeros="0";
-            	if(minutes<10)minuteZero="0";
             	
-            	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
             }
         };
         tpd = new TimePickerDialog(this,otsl,hours[timeid-1],minutes[timeid-1],false);
         tpd.show();
 	}
+	public String getNormalTime( int hours, int minutes){
+    	String ampm = "AM";
+    	String hourZeros = "";
+    	String minuteZero = "";
+    	if(hours>=12){
+    		ampm = "PM";
+    	}
+    	if(hours>12){
+    		hours = hours%12;
+    	}
+    	if(hours==0)hours=12;
+    	if(hours<10)hourZeros="0";
+    	if(minutes<10)minuteZero="0";
+    	
+    	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
+    }
 	
 }
