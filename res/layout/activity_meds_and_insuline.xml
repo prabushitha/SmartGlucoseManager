@@ -1,16 +1,297 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.whileloop.smartglucosemanager.MedsAndInsulineActivity" >
+    android:fillViewport="true"
+    android:scrollbarThumbVertical="@drawable/thumb01"
+	android:scrollbarThumbHorizontal="@drawable/thumb01"
+    android:fadeScrollbars="false"
+     android:scrollbarSize="15dip">
+    
+   
+   
+   
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+
+      <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:background="#C7C7C7"
+        android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="@string/smart_glucose_manager"
+        android:textAllCaps="true" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:background="#C7C7C7"
+        android:paddingLeft="100dp"
+        android:text="meds_insulin" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView2"
+       
+        android:paddingLeft="100dp"
+        android:text="Not Insulin" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView3"
+        android:background="@android:drawable/btn_dropdown"
+        android:contentDescription="Select"
+        android:foregroundGravity="center"
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown"
+        android:text="select"
+        android:textSize="52sp" />
+    
+     <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:background="@android:drawable/btn_dropdown"
+        android:color="#000"
+        android:textSize="52sp"
+        android:layout_below="@+id/spinner1"
+        android:scrollbarStyle="insideOverlay"
+        android:spinnerMode="dropdown" />
+
+     <Spinner
+         android:id="@+id/spinner3"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/spinner2"
+         android:layout_below="@+id/spinner2"
+         android:background="@android:drawable/btn_dropdown"
+         android:scrollbarStyle="insideInset"
+         android:spinnerMode="dropdown"
+         android:text="select"
+         android:textSize="52sp" />
+     
+      <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/spinner3"
+        
+        android:paddingLeft="100dp"
+        android:text="Insulin" />
+      
+       <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:background="#C7C7C7"
+        android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+         android:layout_below="@+id/textView4"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="Long Acting Insulin"
+        android:textAllCaps="true" />
+      
+      <Spinner
+        android:id="@+id/spinner4"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+          android:background="@android:drawable/btn_dropdown"
+        android:textSize="52sp"
+        android:layout_below="@+id/textView4"
+        
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown" />
+
+      <EditText
+          android:id="@+id/editText1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/spinner4"
+          android:ems="10" >
+			  
+          <requestFocus />
+      </EditText>
+
+     <Spinner
+         android:id="@+id/spinner5"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/spinner2"
+         android:layout_below="@+id/spinner4"
+         android:background="@android:drawable/btn_dropdown"
+         android:scrollbarStyle="insideInset"
+         android:spinnerMode="dropdown"
+         android:text="select"
+         android:textSize="52sp" />
+     
+     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:background="#C7C7C7"
+        android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+         android:layout_below="@+id/spinner5"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="Rapid Acting"
+        android:textAllCaps="true" />
+     <Spinner
+        android:id="@+id/spinner6"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+          android:background="@android:drawable/btn_dropdown"
+        android:textSize="52sp"
+        android:layout_below="@+id/spinner5"
+        
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown" />
+     <EditText
+          android:id="@+id/editText2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/spinner6"
+          android:ems="10" >
+			  
+          <requestFocus />
+      </EditText>
+     <Spinner
+        android:id="@+id/spinner7"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:background="@android:drawable/btn_dropdown"
+        android:textSize="52sp"
+        android:layout_below="@+id/spinner6"
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown" />
+<TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:background="#C7C7C7"
+        android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+         android:layout_below="@+id/spinner7"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="Premix Insuling"
+        android:textAllCaps="true" />
+     <Spinner
+         android:id="@+id/spinner8"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/spinner8"
+         android:layout_below="@+id/textView7"
+         android:background="@android:drawable/btn_dropdown"
+         android:scrollbarStyle="insideInset"
+         android:spinnerMode="dropdown"
+         android:text="select"
+         android:textSize="52sp" />
+     <EditText
+          android:id="@+id/editText3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/spinner8"
+          android:ems="10" >
+			  
+          <requestFocus />
+      </EditText>
+     <Spinner
+        android:id="@+id/spinner9"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+          android:background="@android:drawable/btn_dropdown"
+        android:textSize="52sp"
+        android:layout_below="@+id/spinner8"
+        
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown" />
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:background="#C7C7C7"
+        android:paddingLeft="75dp"
+        android:shadowColor="#000000"
+         android:layout_below="@+id/spinner9"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        android:text="Inhaled Insuling"
+        android:textAllCaps="true" />
+     <Spinner
+        android:id="@+id/spinner10"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:background="@android:drawable/btn_dropdown"
+        android:textSize="52sp"
+        android:layout_below="@+id/spinner9"
+        android:scrollbarStyle="insideInset"
+        android:spinnerMode="dropdown" />
+
+     <Spinner
+         android:id="@+id/spinner11"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/spinner10"
+         android:layout_below="@+id/spinner11"
+         android:background="@android:drawable/btn_dropdown"
+         android:scrollbarStyle="insideInset"
+         android:spinnerMode="dropdown"
+         android:text="select"
+         android:textSize="52sp" />
+     <Spinner
+         android:id="@+id/spinner12"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_alignLeft="@+id/spinner11"
+         android:layout_below="@+id/spinner11"
+         android:background="@android:drawable/btn_dropdown"
+         android:scrollbarStyle="insideInset"
+         android:spinnerMode="dropdown"
+         android:text="select"
+         android:textSize="52sp" />
+     
+
+    </TableLayout>
+</ScrollView>
+    
+
+
+
