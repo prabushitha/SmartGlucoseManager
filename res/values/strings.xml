@@ -26,5 +26,7 @@
     <string name="title_activity_dct">DCTActivity</string>
     <string name="title_activity_logbook">LogbookActivity</string>
     <string name="title_activity_satistics">SatisticsActivity</string>
+    <string name="title_activity_meal">MealActivity</string>
+    <string name="title_activity_exercise">ExerciseActivity</string>
 
 </resources>

@@ -43,6 +43,18 @@ public class RemindActivity extends Activity {
 				i = new Intent(this,TestingActivity.class);
 				startActivity(i);
 				break;
+			case R.id.btnInsulin:
+				i = new Intent(this,InsulinActivity.class);
+				startActivity(i);
+				break;
+			case R.id.btnMeal:
+				i = new Intent(this,MealActivity.class);
+				startActivity(i);
+				break;
+			case R.id.btnExercise:
+				i = new Intent(this,ExerciseActivity.class);
+				startActivity(i);
+				break;
 
 			default:
 				break;

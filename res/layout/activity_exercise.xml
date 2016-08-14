@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.whileloop.smartglucosemanager.InsulinActivity" >
+    tools:context="com.whileloop.smartglucosemanager.ExerciseActivity" >
 
     <TextView
         android:id="@+id/textView1"
@@ -20,33 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/testingLL"
-        android:layout_above="@+id/btnChange2"
         android:layout_toRightOf="@+id/btnChange1"
         android:text="ToggleButton" />
     
-    <ToggleButton
-        android:id="@+id/toggleTime2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/toggleTime1"
-        android:layout_below="@+id/toggleTime1"
-        android:text="ToggleButton" />
     
-    <ToggleButton
-        android:id="@+id/toggleTime3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/toggleTime2"
-        android:layout_below="@+id/toggleTime2"
-        android:text="ToggleButton" />
-    
-    <ToggleButton
-        android:id="@+id/toggleTime4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/toggleTime3"
-        android:layout_below="@+id/toggleTime3"
-        android:text="ToggleButton" />
     
     
     <Button
@@ -58,30 +35,7 @@
         android:layout_marginLeft="22dp"
         android:text="@string/change" />
     
-    <Button
-        android:id="@+id/btnChange2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnChange1"
-        android:layout_below="@+id/btnChange1"
-        android:text="@string/change" />
-
-    <Button
-        android:id="@+id/btnChange3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleTime3"
-        android:layout_alignBottom="@+id/toggleTime3"
-        android:layout_toLeftOf="@+id/toggleTime2"
-        android:text="@string/change" />
-
-    <Button
-        android:id="@+id/btnChange4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/toggleTime4"
-        android:layout_toLeftOf="@+id/toggleTime4"
-        android:text="@string/change" />
+    
 
     
 	<LinearLayout 

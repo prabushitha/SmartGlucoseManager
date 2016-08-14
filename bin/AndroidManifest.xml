@@ -82,6 +82,14 @@
             android:name=".SatisticsActivity"
             android:label="@string/title_activity_satistics" >
         </activity>
+        <activity
+            android:name=".MealActivity"
+            android:label="@string/title_activity_meal" >
+        </activity>
+        <activity
+            android:name=".ExerciseActivity"
+            android:label="@string/title_activity_exercise" >
+        </activity>
     </application>
 
 </manifest>
