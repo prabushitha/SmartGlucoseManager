@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 public class MedsAndInsulineActivity extends Activity {
-
+	public MedsAndInsulineActivity() {
+		
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_meds_and_insuline);
+
 	}
 
 	@Override
