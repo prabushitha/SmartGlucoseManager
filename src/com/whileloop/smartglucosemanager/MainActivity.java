@@ -47,6 +47,26 @@ public class MainActivity extends Activity {
 				i = new Intent(this,GlucoseEntryActivity.class);
 				startActivity(i);
 			break;
+			case R.id.profilebtn:
+				i = new Intent(this,ProfileActivity.class);
+				startActivity(i);
+			break;
+			case R.id.medsinsulinbtn:
+				i = new Intent(this,MedsAndInsulineActivity.class);
+				startActivity(i);
+			break;
+			case R.id.calculatorbtn:
+				i = new Intent(this,CalculatorActivity.class);
+				startActivity(i);
+			break;
+			case R.id.logstatisticsbtn:
+				i = new Intent(this,LogbookSatisticsActivity.class);
+				startActivity(i);
+			break;
+			case R.id.dctbtn:
+				i = new Intent(this,DCTActivity.class);
+				startActivity(i);
+			break;
 
 		default:
 			break;

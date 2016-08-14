@@ -9,54 +9,57 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver{
-	DatabaseHelper databaseHelper;
 	AlarmManager alarmManager;
+	public static final String PREFS_NAME = "ALARM_PREFS";
+	SharedPreferences settings;
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
-		
+		settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 		System.out.println(intent.getAction());
-		databaseHelper = new DatabaseHelper(context);
+		//week alarm status, active days are == 1
+		//Monday = dayStatus[0] ... Sunday = dayStatus[6]
 		
-		if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-			//if phone reboots set all alarms
-			alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-			AlarmEntry[] entries = databaseHelper.getActiveAlarms();
-			for(AlarmEntry entry:entries){
-				setAlarm(context,entry);
-			}  
-	    } else {
-			int alarmId = intent.getExtras().getInt("id");
-			AlarmEntry alarm = databaseHelper.getAlarmEntry(alarmId);
-			//week alarm status, active days are == 1
-			//Monday = dayStatus[0] ... Sunday = dayStatus[6]
-			int[] dayStatus = alarm.getAllWeekInfoStatus();
+		int alarmType = intent.getExtras().getInt("type");
+		int alarmId = intent.getExtras().getInt("id");
+		//today
+		Calendar calendar = Calendar.getInstance();
+		int day = calendar.get(Calendar.DAY_OF_WEEK); //Sunday = 1, Monday = 2 etc
+		day = day-1; //Sunday = 0, Monday = 1,...Saturaday = 6,
+		if(day==0){
+			day = 7; //Sunday = 7
+		}
+		//get alarm status of each alarm category
+		boolean todayStatusAlarm1 = settings.getBoolean("0_day_"+day, false);
+		boolean todayStatusAlarm2 = settings.getBoolean("1_day_"+day, false);
+		boolean todayStatusAlarm3 = settings.getBoolean("2_day_"+day, false);
+		boolean todayStatusAlarm4 = settings.getBoolean("3_day_"+day, false);
+		//check whether the alarm is set for today
+		if(alarmType==0 && todayStatusAlarm1){
+			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
+			notification(context,"Smart Glucose Manager","You should do a test");
+		}else if(alarmType==1 && todayStatusAlarm2){
+			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
+			notification(context,"Smart Glucose Manager","You should get insuling & medication");
 			
-			//today
-			Calendar calendar = Calendar.getInstance();
-			int day = calendar.get(Calendar.DAY_OF_WEEK); //Sunday = 1, Monday = 2 etc
-			day = day-2; 
-			if(day==-1){
-				day = Calendar.SUNDAY;
-			}
-			//check if the day is selected by the user
-			if(dayStatus[day]==1){
-				Log.e("Alarm Alert","ALARM id:"+alarmId+" :--> Alarm time:"+alarm.getTime());
-				notification(context,"Smart Glucose Manager","You should do a test at !"+alarm.getTime());
-			}else{
-				Log.e("Alarm Alert","Alarm is not set for today");
-			}
-	    }
-		
-		
-		
-		
-		
+		}else if(alarmType==2 && todayStatusAlarm3){
+			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
+			notification(context,"Smart Glucose Manager","You should get meals");
+			
+		}else if(alarmType==3 && todayStatusAlarm4){
+			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
+			notification(context,"Smart Glucose Manager","You should do excerise");
+			
+		}else{
+			Log.e("Alarm Alert","Alarm is not set for today");
+		}
 	}
 	public void notification(Context context,String title,String message){
+		
 		Intent intent = new Intent(context, GlucoseEntryActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), intent, 0);
 		
@@ -72,18 +75,6 @@ public class AlarmReceiver extends BroadcastReceiver{
         noti.flags |= Notification.FLAG_AUTO_CANCEL;
 
         ntm.notify(0, noti);
+        
 	}
-	private void setAlarm(Context context,AlarmEntry alarm){
-		//Set time to calendar
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, alarm.getHours());
-		calendar.set(Calendar.MINUTE,alarm.getMinutes());
-		Intent myIntent = new Intent(context,AlarmReceiver.class);
-		myIntent.putExtra("id", alarm.getId());
-		// The toggle is enabled
-		PendingIntent pending_intent = PendingIntent.getBroadcast(context, 
-				alarm.getId(), myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pending_intent);
-	}
-
 }

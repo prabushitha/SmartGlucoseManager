@@ -13,41 +13,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
-    <CheckBox
-        android:id="@+id/checkTue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkMon"
-        android:text="Tuesday" />
-
-    <CheckBox
-        android:id="@+id/checkWed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkTue"
-        android:text="Wednessday" />
-
-    <CheckBox
-        android:id="@+id/checkThu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkWed"
-        android:text="Thursday" />
-
-    <CheckBox
-        android:id="@+id/checkFri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/checkThu"
-        android:text="Friday" />
     
-    <CheckBox
-        android:id="@+id/checkSun"
+    
+    <TextView
+        android:id="@+id/textViewTime1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkSat"
-        android:text="Sunday" />
+        android:layout_alignLeft="@+id/textViewTime2"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="23dp"
+        android:text="07:00"
+        android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/textViewTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/toggleTime2"
+        android:layout_alignBottom="@+id/toggleTime2"
+        android:layout_alignLeft="@+id/textView1"
+        android:text="08:00"
+        android:textSize="20sp" />
+    
+    <TextView
+        android:id="@+id/textViewTime3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/toggleTime3"
+        android:layout_alignBottom="@+id/toggleTime3"
+        android:layout_alignLeft="@+id/textViewTime2"
+        android:text="09:00"
+        android:textSize="20sp" />
+    
+    <TextView
+        android:id="@+id/textViewTime4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/toggleTime4"
+        android:layout_alignBottom="@+id/toggleTime4"
+        android:layout_alignLeft="@+id/checkMon"
+        android:text="10:00"
+        android:textSize="20sp" />
+    
+    <ToggleButton
+        android:id="@+id/toggleTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnChange2"
+        android:layout_toRightOf="@+id/btnChange1"
+        android:text="ToggleButton" />
+    
     <ToggleButton
         android:id="@+id/toggleTime2"
         android:layout_width="wrap_content"
@@ -72,13 +87,6 @@
         android:layout_below="@+id/toggleTime3"
         android:text="ToggleButton" />
     
-    <ToggleButton
-        android:id="@+id/toggleTime1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnChange2"
-        android:layout_toRightOf="@+id/btnChange1"
-        android:text="ToggleButton" />
     
     <Button
         android:id="@+id/btnChange1"
@@ -115,45 +123,7 @@
         android:layout_toLeftOf="@+id/toggleTime4"
         android:text="@string/change" />
 
-    <TextView
-        android:id="@+id/textViewTime4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleTime4"
-        android:layout_alignBottom="@+id/toggleTime4"
-        android:layout_alignLeft="@+id/checkMon"
-        android:text="10:00"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewTime3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleTime3"
-        android:layout_alignBottom="@+id/toggleTime3"
-        android:layout_alignLeft="@+id/textViewTime2"
-        android:text="09:00"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewTime1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewTime2"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="23dp"
-        android:text="07:00"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/textViewTime2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleTime2"
-        android:layout_alignBottom="@+id/toggleTime2"
-        android:layout_alignLeft="@+id/textView1"
-        android:text="08:00"
-        android:textSize="20sp" />
+    
 
     <CheckBox
         android:id="@+id/checkMon"
@@ -162,7 +132,34 @@
         android:layout_alignRight="@+id/checkTue"
         android:layout_below="@+id/btnChange4"
         android:text="@string/monday" />
+    
+    <CheckBox
+        android:id="@+id/checkTue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkMon"
+        android:text="Tuesday" />
 
+    <CheckBox
+        android:id="@+id/checkWed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkTue"
+        android:text="Wednessday" />
+
+    <CheckBox
+        android:id="@+id/checkThu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkWed"
+        android:text="Thursday" />
+
+    <CheckBox
+        android:id="@+id/checkFri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkThu"
+        android:text="Friday" />
     <CheckBox
         android:id="@+id/checkSat"
         android:layout_width="wrap_content"
@@ -170,5 +167,13 @@
         android:layout_alignLeft="@+id/checkFri"
         android:layout_below="@+id/checkFri"
         android:text="Saturday" />
+    <CheckBox
+        android:id="@+id/checkSun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkSat"
+        android:text="Sunday" />
+
+    
 
 </RelativeLayout>

@@ -8,7 +8,10 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +29,11 @@ public class TestingActivity extends Activity implements OnClickListener{
 	AlarmManager alarmManager;
 	final int NUMBER_OF_TIMES = 4;
 	final int ALARM_TYPE = 0;
+	public static final String PREFS_NAME = "ALARM_PREFS";
+	
+	SharedPreferences  settings;
+	Editor editor;
+	
 	private int[] hours = new int[4];
 	private int[] minutes = new int[4];
 	static final int TIME_DIALOG_ID = 999;
@@ -44,6 +52,9 @@ public class TestingActivity extends Activity implements OnClickListener{
 		//app logic
 		//Alarm manager
 		alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+		//sharedpreferences
+		settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+		editor = settings.edit();
 		//Getting time text views
 		textviews[0] = (TextView)findViewById(R.id.textViewTime1);
 		textviews[1] = (TextView)findViewById(R.id.textViewTime2);
@@ -119,9 +130,15 @@ public class TestingActivity extends Activity implements OnClickListener{
 			//set check box listener
 		}
 		for(int i=0;i<days.length;i++){
+			final int y = i;
 			days[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					setAlarmDays();
+					//add to sharedprefs
+					String alarmday = ALARM_TYPE+"_day_"+(y+1);
+		    		editor.putBoolean(alarmday,isChecked);
+		    		editor.commit();
+		    		System.out.println(alarmday+":"+isChecked);
 				}
 			});
 		} 
@@ -138,7 +155,8 @@ public class TestingActivity extends Activity implements OnClickListener{
     	}
     	for(int i=1;i<=days.length;i++){
     		String status = "OFF";
-    		if(days[i-1].isChecked()){
+    		boolean checked = days[i-1].isChecked();
+    		if(checked){
     			status = "ON";
     		}
     		alarmEntry.setWeekInfo(i, status);
@@ -151,11 +169,13 @@ public class TestingActivity extends Activity implements OnClickListener{
 		}
 	}
 	private void setAlarm(int id){
+		cancelAlarm(id);
 		//Set time to calendar
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, hours[id-1]);
 		calendar.set(Calendar.MINUTE,minutes[id-1]);
 		myIntent[id-1].putExtra("id", id);
+		myIntent[id-1].putExtra("type", ALARM_TYPE);
 		// The toggle is enabled
 		pending_intents[id-1] = PendingIntent.getBroadcast(TestingActivity.this, 
 		            			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);
@@ -166,8 +186,9 @@ public class TestingActivity extends Activity implements OnClickListener{
 		if(pending_intents[id-1]!=null){
 			intent = pending_intents[id-1];
 		}else{
-			intent = PendingIntent.getBroadcast(TestingActivity.this, 
-        			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);
+			intent = PendingIntent.getService(TestingActivity.this,id,myIntent[id-1],PendingIntent.FLAG_UPDATE_CURRENT);
+			/*intent = PendingIntent.getBroadcast(TestingActivity.this, 
+        			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);*/
 		}
 		alarmManager.cancel(intent);
 	}

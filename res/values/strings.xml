@@ -18,5 +18,13 @@
     <string name="change">Change</string>
     <string name="title_activity_glucose_entry">GlucoseEntryActivity</string>
     <string name="smart_glucose_manager">Smart Glucose Manager</string>
+    <string name="title_activity_insulin">InsulinActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_meds_and_insuline">MedsAndInsulineActivity</string>
+    <string name="title_activity_calculator">CalculatorActivity</string>
+    <string name="title_activity_logbook_satistics">LogbookSatisticsActivity</string>
+    <string name="title_activity_dct">DCTActivity</string>
+    <string name="title_activity_logbook">LogbookActivity</string>
+    <string name="title_activity_satistics">SatisticsActivity</string>
 
 </resources>

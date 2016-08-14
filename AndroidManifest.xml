@@ -7,7 +7,9 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="23" />
-	 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -31,22 +33,55 @@
             android:label="@string/title_activity_testing" >
         </activity>
 
-        <receiver 
-            android:name=".AlarmReceiver" 
+        <receiver android:name=".AlarmReceiver" >
+        </receiver>
+        <receiver
+            android:name=".BootCompleteReceiver"
             android:enabled="true"
-        	android:exported="true"
-        	android:label="BootReceiver">
+            android:exported="true"
+            android:label="BootReceiver" >
             <intent-filter>
-            	<action android:name="android.intent.action.BOOT_COMPLETED"></action>
-        	</intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                </action>
+            </intent-filter>
         </receiver>
 
         <activity
             android:name=".GlucoseEntryActivity"
             android:label="@string/title_activity_glucose_entry" >
         </activity>
-        
-        
+        <activity
+            android:name=".InsulinActivity"
+            android:label="@string/title_activity_insulin" >
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name=".MedsAndInsulineActivity"
+            android:label="@string/title_activity_meds_and_insuline" >
+        </activity>
+        <activity
+            android:name=".CalculatorActivity"
+            android:label="@string/title_activity_calculator" >
+        </activity>
+        <activity
+            android:name=".LogbookSatisticsActivity"
+            android:label="@string/title_activity_logbook_satistics" >
+        </activity>
+        <activity
+            android:name=".DCTActivity"
+            android:label="@string/title_activity_dct" >
+        </activity>
+        <activity
+            android:name=".LogbookActivity"
+            android:label="@string/title_activity_logbook" >
+        </activity>
+        <activity
+            android:name=".SatisticsActivity"
+            android:label="@string/title_activity_satistics" >
+        </activity>
     </application>
 
 </manifest>
