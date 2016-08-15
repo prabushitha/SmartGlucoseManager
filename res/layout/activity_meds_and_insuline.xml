@@ -40,6 +40,7 @@
         android:layout_below="@+id/textView1"
         android:background="#C7C7C7"
         android:paddingLeft="100dp"
+      
         android:text="meds_insulin" />
 
     <TextView
