@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnTesting"
         android:layout_centerHorizontal="true"
+        android:onClick="@string/method_button_click"
         android:text="@string/insulin" />
 
     <Button
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnInsulin"
         android:layout_centerHorizontal="true"
+        android:onClick="@string/method_button_click"
         android:text="@string/meal" />
 
     <Button
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnMeal"
         android:layout_centerHorizontal="true"
+        android:onClick="@string/method_button_click"
         android:text="@string/exercises" />
 
 </RelativeLayout>

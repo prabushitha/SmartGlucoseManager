@@ -1,6 +1,5 @@
 package com.whileloop.smartglucosemanager;
 
-
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -25,11 +24,11 @@ import android.widget.CompoundButton;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
-public class TestingActivity extends Activity implements OnClickListener{
+public class MealActivity extends Activity implements OnClickListener{
 	AlarmManager alarmManager;
 	final int NUMBER_OF_TIMES = 4;
-	final int ALARM_TYPE = 0;
-	final int STARTING_ALARM_NUMBER = 1;
+	final int ALARM_TYPE = 2;
+	final int STARTING_ALARM_NUMBER = 9;
 	public static final String PREFS_NAME = "ALARM_PREFS";
 	
 	SharedPreferences  settings;
@@ -44,11 +43,10 @@ public class TestingActivity extends Activity implements OnClickListener{
 	private Button[] changebtns = new Button[4];
 	private ToggleButton[] toggles = new ToggleButton[4];
 	DatabaseHelper databaseHelper;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_testing);
+		setContentView(R.layout.activity_meal);
 		//app logic
 		//Alarm manager
 		alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
@@ -181,7 +179,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 		myIntent[id-1].putExtra("id", id+STARTING_ALARM_NUMBER-1);
 		myIntent[id-1].putExtra("type", ALARM_TYPE);
 		// The toggle is enabled
-		pending_intents[id-1] = PendingIntent.getBroadcast(TestingActivity.this, 
+		pending_intents[id-1] = PendingIntent.getBroadcast(MealActivity.this, 
 		            			id+STARTING_ALARM_NUMBER-1, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pending_intents[id-1]);
 	}
@@ -190,7 +188,7 @@ public class TestingActivity extends Activity implements OnClickListener{
 		if(pending_intents[id-1]!=null){
 			intent = pending_intents[id-1];
 		}else{
-			intent = PendingIntent.getService(TestingActivity.this,id+STARTING_ALARM_NUMBER-1,myIntent[id-1],PendingIntent.FLAG_UPDATE_CURRENT);
+			intent = PendingIntent.getService(MealActivity.this,id+STARTING_ALARM_NUMBER-1,myIntent[id-1],PendingIntent.FLAG_UPDATE_CURRENT);
 			/*intent = PendingIntent.getBroadcast(TestingActivity.this, 
         			id, myIntent[id-1], PendingIntent.FLAG_UPDATE_CURRENT);*/
 		}
@@ -252,11 +250,10 @@ public class TestingActivity extends Activity implements OnClickListener{
 	    	
 	    	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
 	    }
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.testing, menu);
+		getMenuInflater().inflate(R.menu.meal, menu);
 		return true;
 	}
 
@@ -271,6 +268,4 @@ public class TestingActivity extends Activity implements OnClickListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
 }
