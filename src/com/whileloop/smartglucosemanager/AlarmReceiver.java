@@ -20,7 +20,7 @@ public class AlarmReceiver extends BroadcastReceiver{
 	public void onReceive(Context context, Intent intent) {
 		// TODO Auto-generated method stub
 		settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-		System.out.println(intent.getAction());
+		//System.out.println(intent.getAction());
 		//week alarm status, active days are == 1
 		//Monday = dayStatus[0] ... Sunday = dayStatus[6]
 		
