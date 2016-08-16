@@ -95,6 +95,135 @@ public final class R {
         public static final int toggleTime2=0x7f080019;
         public static final int toggleTime3=0x7f08001a;
         public static final int toggleTime4=0x7f08001b;
+<<<<<<< HEAD
+=======
+=======
+        public static final int ic_launcher=0x7f020000;
+        public static final int thumb01=0x7f020001;
+    }
+    public static final class id {
+        public static final int RelativeLayout1=0x7f080000;
+        public static final int action_settings=0x7f080070;
+        public static final int bgText=0x7f080004;
+        public static final int bmiInput=0x7f080034;
+        public static final int btnChange1=0x7f080067;
+        public static final int btnChange2=0x7f080066;
+        public static final int btnChange3=0x7f080069;
+        public static final int btnChange4=0x7f08006a;
+        public static final int btnExercise=0x7f08005c;
+        public static final int btnInsulin=0x7f08005a;
+        public static final int btnLogbook=0x7f08000f;
+        public static final int btnMeal=0x7f08005b;
+        public static final int btnSatistics=0x7f080010;
+        public static final int btnTesting=0x7f080059;
+        public static final int button1=0x7f080011;
+        public static final int calculatorbtn=0x7f080015;
+        public static final int checkBox1=0x7f080043;
+        public static final int checkBox10=0x7f080050;
+        public static final int checkBox11=0x7f080051;
+        public static final int checkBox12=0x7f080052;
+        public static final int checkBox13=0x7f080053;
+        public static final int checkBox14=0x7f080054;
+        public static final int checkBox15=0x7f080055;
+        public static final int checkBox16=0x7f080056;
+        public static final int checkBox17=0x7f080057;
+        public static final int checkBox2=0x7f080044;
+        public static final int checkBox3=0x7f080045;
+        public static final int checkBox4=0x7f080047;
+        public static final int checkBox5=0x7f08004b;
+        public static final int checkBox6=0x7f08004c;
+        public static final int checkBox7=0x7f08004d;
+        public static final int checkBox8=0x7f08004e;
+        public static final int checkBox9=0x7f08004f;
+        public static final int checkFri=0x7f08006d;
+        public static final int checkMon=0x7f080064;
+        public static final int checkSat=0x7f08006e;
+        public static final int checkSun=0x7f08006f;
+        public static final int checkThu=0x7f08006c;
+        public static final int checkTue=0x7f08006b;
+        public static final int checkWed=0x7f080068;
+        public static final int dateText=0x7f080001;
+        public static final int dctbtn=0x7f080017;
+        public static final int editText1=0x7f08001f;
+        public static final int editText10=0x7f08003d;
+        public static final int editText11=0x7f080048;
+        public static final int editText12=0x7f080058;
+        public static final int editText2=0x7f080023;
+        public static final int editText3=0x7f080027;
+        public static final int emailInput=0x7f080036;
+        public static final int entrybtn=0x7f080012;
+        public static final int femalRadio=0x7f08002f;
+        public static final int heightText=0x7f080030;
+        public static final int heightTextField=0x7f080032;
+        public static final int logstatisticsbtn=0x7f080016;
+        public static final int ls_tv1=0x7f08000e;
+        public static final int maleRadio=0x7f08002e;
+        public static final int medsinsulinbtn=0x7f080014;
+        public static final int mo_do_input=0x7f08003b;
+        public static final int mobileInput=0x7f08003a;
+        public static final int numberInput=0x7f080031;
+        public static final int phoneInput=0x7f080038;
+        public static final int profilebtn=0x7f080013;
+        public static final int radioAfterBreakfast=0x7f080009;
+        public static final int radioAfterDinner=0x7f08000d;
+        public static final int radioAfterLunch=0x7f08000b;
+        public static final int radioBeforeBrekfast=0x7f080008;
+        public static final int radioBeforeDinner=0x7f08000c;
+        public static final int radioBeforeLunch=0x7f08000a;
+        public static final int radioGroup1=0x7f08002d;
+        public static final int radiogroup=0x7f080007;
+        public static final int savebutton=0x7f080006;
+        public static final int spinner1=0x7f080019;
+        public static final int spinner10=0x7f08002a;
+        public static final int spinner11=0x7f08002b;
+        public static final int spinner12=0x7f08002c;
+        public static final int spinner2=0x7f08001a;
+        public static final int spinner3=0x7f08001b;
+        public static final int spinner4=0x7f08001e;
+        public static final int spinner5=0x7f080020;
+        public static final int spinner6=0x7f080022;
+        public static final int spinner7=0x7f080024;
+        public static final int spinner8=0x7f080026;
+        public static final int spinner9=0x7f080028;
+        public static final int textView1=0x7f080002;
+        public static final int textView10=0x7f080039;
+        public static final int textView11=0x7f080035;
+        public static final int textView12=0x7f08003f;
+        public static final int textView13=0x7f08003c;
+        public static final int textView14=0x7f080040;
+        public static final int textView15=0x7f080042;
+        public static final int textView16=0x7f080041;
+        public static final int textView17=0x7f080046;
+        public static final int textView18=0x7f080049;
+        public static final int textView19=0x7f08004a;
+        public static final int textView2=0x7f080005;
+        public static final int textView3=0x7f080018;
+        public static final int textView4=0x7f08001c;
+        public static final int textView5=0x7f08001d;
+        public static final int textView6=0x7f080021;
+        public static final int textView7=0x7f080025;
+        public static final int textView8=0x7f080029;
+        public static final int textView9=0x7f080037;
+        public static final int textViewTime1=0x7f08005d;
+        public static final int textViewTime2=0x7f08005e;
+        public static final int textViewTime3=0x7f080060;
+        public static final int textViewTime4=0x7f080062;
+        public static final int timeText=0x7f080003;
+<<<<<<< HEAD
+        public static final int toggleTime1=0x7f080065;
+        public static final int toggleTime2=0x7f08005f;
+        public static final int toggleTime3=0x7f080061;
+        public static final int toggleTime4=0x7f080063;
+        public static final int weightText=0x7f080033;
+        public static final int weightTextField=0x7f08003e;
+=======
+        public static final int toggleTime1=0x7f080039;
+        public static final int toggleTime2=0x7f080033;
+        public static final int toggleTime3=0x7f080035;
+        public static final int toggleTime4=0x7f080037;
+>>>>>>> 3e6be18d504a795526b7564c7ec63f0711a33198
+>>>>>>> b466fd344c60003c80735338c2c6d34857437c87
+>>>>>>> b6cc700888c10ffde40e700e8507371c12f5c13b
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
