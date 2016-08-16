@@ -41,6 +41,17 @@ public class GlucoseEntry {
 	public String getBg(){
 		return bg;
 	}
+	public float getBgValue(){
+		float f;
+		try{
+			System.out.println("Glucose : "+bg+" Split : "+bg.split("BG (mg dl)")[0].trim());
+			
+			f = Float.parseFloat(bg.split("BG (mg dl)")[0].trim());
+		}catch(Exception e){
+			f = 0;
+		}
+		return f;
+	}
 	
 	public void setTimeOfEvent(String time_of_event){
 		this.time_of_event=time_of_event;

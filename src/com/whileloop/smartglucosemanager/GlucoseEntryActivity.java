@@ -1,24 +1,45 @@
 package com.whileloop.smartglucosemanager;
 
+import java.util.Calendar;
+
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TimePicker;
 
 public class GlucoseEntryActivity extends Activity {
 	private RadioGroup radioGroup;
 	private RadioButton radioButton;
+	private EditText editDateText;
+	private EditText editTimeText;
+	private Calendar cal;
 	DatabaseHelper databaseHelper;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_glucose_entry);
 		databaseHelper = new DatabaseHelper(this);
+		cal = Calendar.getInstance();
+		
+		editDateText = (EditText)findViewById(R.id.dateText);
+		editDateText.setText(cal.get(Calendar.YEAR)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DAY_OF_MONTH));
+		
+		editTimeText = (EditText)findViewById(R.id.timeText);
+		editTimeText.setText(getNormalTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE)));
 	}
 
 	@Override
@@ -56,7 +77,6 @@ public class GlucoseEntryActivity extends Activity {
             String time_of_event=radioButton.getText().toString();
             
             GlucoseEntry glucoseEntry=new GlucoseEntry();
-            glucoseEntry.setId(1);
             glucoseEntry.setDate(date);
             glucoseEntry.setTime(time);
             glucoseEntry.setBg(bg);
@@ -64,9 +84,54 @@ public class GlucoseEntryActivity extends Activity {
             
             databaseHelper.insertGlucoseEntry(glucoseEntry);
             Log.e("Save Button", "Save clicked");
-
+            
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
+		}else if(v.getId()==R.id.dateText){
+			DatePickerDialog dpd;
+			OnDateSetListener otsl = new DatePickerDialog.OnDateSetListener() {
+				 
+				@Override
+			    public void onDateSet(DatePicker view, int year, int monthOfYear,
+			            int dayOfMonth) {
+			        editDateText.setText(year+"/"+(monthOfYear+1)+"/"+dayOfMonth); 
+			    }
+	        };
+	        dpd = new DatePickerDialog(this,otsl,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+	        dpd.show();
+		}else if(v.getId()==R.id.timeText){
+			// TODO Auto-generated method stub
+						TimePickerDialog tpd;
+						
+						OnTimeSetListener otsl = new TimePickerDialog.OnTimeSetListener() {
+							 
+				            @Override
+				            public void onTimeSet(TimePicker view, int hourOfDay,
+				                    int minute) {
+				            	editTimeText.setText(getNormalTime(hourOfDay,minute));
+				            }
+				        };
+				        tpd = new TimePickerDialog(this,otsl,cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE),false);
+				        tpd.show();
 		}
 	
 	}
+	
+	public String getNormalTime( int hours, int minutes){
+    	String ampm = "AM";
+    	String hourZeros = "";
+    	String minuteZero = "";
+    	if(hours>=12){
+    		ampm = "PM";
+    	}
+    	if(hours>12){
+    		hours = hours%12;
+    	}
+    	if(hours==0)hours=12;
+    	if(hours<10)hourZeros="0";
+    	if(minutes<10)minuteZero="0";
+    	
+    	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
+    }
 	
 }

@@ -19,9 +19,9 @@
         android:ems="10"
         android:inputType="date"
         android:text="2016-02-04"
+        android:onClick="onSaveButtonClick"
         tools:ignore="RtlHardcoded" >
 
-        <requestFocus></requestFocus>
         </EditText>
 
     <EditText
@@ -31,6 +31,7 @@
         android:layout_below="@+id/dateText"
         android:ems="10"
         android:inputType="time"
+        android:onClick="onSaveButtonClick"
         android:text="07:00" />
 
     <EditText
@@ -41,6 +42,7 @@
         android:layout_alignRight="@+id/timeText"
         android:layout_below="@+id/timeText"
         android:ems="10"
+        android:inputType="numberDecimal"
         android:text="BG (mg dl)" />
 
     <TextView

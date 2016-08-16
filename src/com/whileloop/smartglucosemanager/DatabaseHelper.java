@@ -63,7 +63,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL(TABLE_AT_CREATE);
 		this.db=db;
 		initAlarmTimeTable(db); //add records to the alarm timetable
-		
 	}
 
 	@Override
@@ -148,6 +147,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		printTable(TABLE_GE,GE_NUM_COLUMNS);
 		
 	}
+	public GlucoseEntry[] getGlucoseEntries(){
+		
+		db = this.getReadableDatabase();
+		String query="select * from "+TABLE_GE;
+		Cursor cursor=db.rawQuery(query, null);
+		int count=cursor.getCount();
+		GlucoseEntry[] glucoseEntries = new GlucoseEntry[count];
+		
+		if (cursor.moveToFirst()) {
+			int j = 0;
+            do {
+            	GlucoseEntry glucoseEntry = new GlucoseEntry();
+        		String[] column_data = new String[GE_NUM_COLUMNS];
+        		for(int i=0;i<GE_NUM_COLUMNS;i++){
+        			column_data[i] = cursor.getString(i);
+                }
+        		glucoseEntry.setId(Integer.parseInt(column_data[0]));
+        		glucoseEntry.setDate(column_data[1]);
+        		glucoseEntry.setTime(column_data[2]);
+        		glucoseEntry.setBg(column_data[3]);
+        		glucoseEntry.setTimeOfEvent(column_data[4]);
+        		glucoseEntries[j] = glucoseEntry;
+        		j++;
+            } while (cursor.moveToNext());
+        }
+		return glucoseEntries;
+	}
+	
 	public void updateAlarmEntry(AlarmEntry e){
 		db=this.getWritableDatabase();
 		ContentValues contentValues=new ContentValues();
