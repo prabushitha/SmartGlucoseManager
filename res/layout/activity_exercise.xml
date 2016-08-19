@@ -7,97 +7,101 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.whileloop.smartglucosemanager.ExerciseActivity" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-    
-    <ToggleButton
-        android:id="@+id/toggleTime1"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/testingLL"
-        android:layout_toRightOf="@+id/btnChange1"
-        android:text="ToggleButton" />
-    
-    
-    
-    
-    <Button
-        android:id="@+id/btnChange1"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/testingLL"
-        android:layout_marginLeft="22dp"
-        android:text="@string/change" />
-    
-    
-
-    
-	<LinearLayout 
-	   android:id = "@+id/testingLL"
-	   android:layout_marginTop="30dp"
-	   android:layout_below="@+id/textView1"
-	   android:layout_width="fill_parent"
-	   android:layout_height="wrap_content"
-	   android:orientation="horizontal" >
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkMon"
+	<TableLayout 
+	    android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:stretchColumns="*" >
+	    <TableRow >
+	        <TextView
+		        android:id="@+id/textView1"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="MON" />
-		    
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkTue"
-		        android:layout_width="wrap_content"
+		        android:text="Exercise" />
+	    </TableRow>
+	    
+	    <TableRow >
+	        <LinearLayout 
+			   android:id = "@+id/testingLL"
+			   android:layout_marginTop="30dp"
+			   android:layout_width="0dp"
+			   android:layout_weight="1"
+			   android:layout_height="wrap_content"
+			   android:gravity="center"
+			   android:orientation="horizontal" >
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkMon"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="MON" />
+				    
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkTue"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="TUE" />
+				
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkWed"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="WED" />
+				
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkThu"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="THU" />
+				
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkFri"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="FRI" />
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkSat"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="SAT" />
+				    <com.whileloop.customuis.WeekCheckBox
+				        android:id="@+id/checkSun"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:button="@null"
+				        android:textColor="#FFFFFF"
+				        android:text="SUN" />
+			   </LinearLayout>
+	    </TableRow>
+	    
+	    <TableRow >
+	        <Button
+		        android:id="@+id/btnChange1"
+		        android:layout_marginTop="20dp"
+		        android:layout_width="0dp"
+		        android:layout_weight="7"
 		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="TUE" />
-		
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkWed"
-		        android:layout_width="wrap_content"
+		        android:text="@string/change" />
+	        <ToggleButton
+		        android:id="@+id/toggleTime1"
+		        android:layout_marginTop="20dp"
+		        android:layout_width="0dp"
+		        android:layout_weight="3"
 		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="WED" />
-		
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkThu"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="THU" />
-		
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkFri"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="FRI" />
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkSat"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="SAT" />
-		    <com.whileloop.customuis.WeekCheckBox
-		        android:id="@+id/checkSun"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:button="@null"
-		        android:textColor="#FFFFFF"
-		        android:text="SUN" />
-	   </LinearLayout>
+		        android:text="ToggleButton" />
+	    </TableRow>
+	</TableLayout>
 
 </RelativeLayout>
