@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
@@ -34,6 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String AT_SAT = "d_sat";
 	private static final String AT_SUN = "d_sun";
 	
+	//profile table(PT)
 	
 	SQLiteDatabase db;
 	
@@ -136,7 +138,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		ContentValues contentValues=new ContentValues();
 		String query="select * from "+TABLE_GE;
 		Cursor cursor=db.rawQuery(query, null);
-		int count=cursor.getCount();
+		int count=0;//cursor.getCount();
+		if(cursor.moveToLast()){
+			count = Integer.parseInt(cursor.getString(0));
+		}else{
+			count = 0;
+		}
+		//
 		contentValues.put(GE_ID,count+1);
 		//contentValues.put(COLUMN_ID,e.getId());
 		contentValues.put(GE_DATE, e.getDate());
@@ -146,6 +154,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(TABLE_GE, null, contentValues);
 		printTable(TABLE_GE,GE_NUM_COLUMNS);
 		
+	}
+	public boolean removeGlucoseEntry(int id){
+		db=this.getWritableDatabase();
+		Log.v("Database",TABLE_GE+":"+GE_ID+"="+id);
+		return db.delete(TABLE_GE, GE_ID+"="+id, null)>0;
 	}
 	public GlucoseEntry[] getGlucoseEntries(){
 		
@@ -172,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         		j++;
             } while (cursor.moveToNext());
         }
-		return glucoseEntries;
+		return GlucoseEntry.SortByDate(glucoseEntries);
 	}
 	
 	public void updateAlarmEntry(AlarmEntry e){

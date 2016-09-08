@@ -41,7 +41,7 @@ public class GlucoseEntryActivity extends Activity {
 		editTimeText = (EditText)findViewById(R.id.timeText);
 		editTimeText.setText(getNormalTime(cal.get(Calendar.HOUR_OF_DAY),cal.get(Calendar.MINUTE)));
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -133,5 +133,13 @@ public class GlucoseEntryActivity extends Activity {
     	
     	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
     }
+	public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 	
 }

@@ -14,6 +14,14 @@ public class LogbookSatisticsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_logbook_satistics);
 	}
+	public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

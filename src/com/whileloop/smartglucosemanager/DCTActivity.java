@@ -1,9 +1,11 @@
 package com.whileloop.smartglucosemanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class DCTActivity extends Activity {
 
@@ -12,7 +14,14 @@ public class DCTActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dct);
 	}
-
+	public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

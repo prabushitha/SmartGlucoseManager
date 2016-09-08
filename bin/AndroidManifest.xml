@@ -17,7 +17,8 @@
         android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +27,13 @@
         </activity>
         <activity
             android:name=".RemindActivity"
-            android:label="@string/title_activity_remind" >
+            android:label="@string/title_activity_remind"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".TestingActivity"
-            android:label="@string/title_activity_testing" >
+            android:label="@string/title_activity_testing"
+            android:screenOrientation="portrait" >
         </activity>
 
         <receiver android:name=".AlarmReceiver" >
@@ -48,47 +51,62 @@
 
         <activity
             android:name=".GlucoseEntryActivity"
-            android:label="@string/title_activity_glucose_entry" >
+            android:label="@string/title_activity_glucose_entry"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".InsulinActivity"
-            android:label="@string/title_activity_insulin" >
+            android:label="@string/title_activity_insulin"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".MedsAndInsulineActivity"
-            android:label="@string/title_activity_meds_and_insuline" >
+            android:label="@string/title_activity_meds_and_insuline"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".CalculatorActivity"
-            android:label="@string/title_activity_calculator" >
+            android:label="@string/title_activity_calculator"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".LogbookSatisticsActivity"
-            android:label="@string/title_activity_logbook_satistics" >
+            android:label="@string/title_activity_logbook_satistics"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".DCTActivity"
-            android:label="@string/title_activity_dct" >
+            android:label="@string/title_activity_dct"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".LogbookActivity"
-            android:label="@string/title_activity_logbook" >
+            android:label="@string/title_activity_logbook"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".SatisticsActivity"
-            android:label="@string/title_activity_satistics" >
+            android:label="@string/title_activity_satistics"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".MealActivity"
-            android:label="@string/title_activity_meal" >
+            android:label="@string/title_activity_meal"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ExerciseActivity"
-            android:label="@string/title_activity_exercise" >
+            android:label="@string/title_activity_exercise"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

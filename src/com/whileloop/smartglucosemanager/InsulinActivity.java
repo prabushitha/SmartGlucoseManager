@@ -253,7 +253,14 @@ public class InsulinActivity extends Activity implements OnClickListener{
 	    	
 	    	return hourZeros+hours+":"+minuteZero+minutes+" "+ampm;
 	    }
-
+		public void onBackPress(View v){
+			onBackPressed();
+		}
+		@Override
+	     public void onBackPressed(){
+			Intent i = new Intent(this,RemindActivity.class);
+			startActivity(i);
+		}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

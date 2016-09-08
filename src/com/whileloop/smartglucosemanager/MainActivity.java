@@ -67,9 +67,22 @@ public class MainActivity extends Activity {
 				i = new Intent(this,DCTActivity.class);
 				startActivity(i);
 			break;
+			case R.id.settingsbtn:
+				i = new Intent(this,SettingsActivity.class);
+				startActivity(i);
+			break;
 
 		default:
 			break;
 		}
     }
+    
+    public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 }

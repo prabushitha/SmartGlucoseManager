@@ -60,4 +60,12 @@ public class RemindActivity extends Activity {
 				break;
 		}
     }
+    public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
+	}
 }

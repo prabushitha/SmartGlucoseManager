@@ -2,12 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.whileloop.smartglucosemanager.LogbookActivity" >
-    
-    
-    
-    
-    
+    tools:context="com.whileloop.smartglucosemanager.SettingsActivity" >
     
     <TableLayout 
         	android:layout_width="fill_parent"
@@ -23,7 +18,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="LogBook"
+		            android:text="Settings"
 		            />
             <Button 
                  	android:layout_width="0dp"
@@ -34,25 +29,23 @@
                 />
         </TableRow>
     </TableLayout>
-    <ScrollView 
-        android:id="@+id/scrollView1"
+
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
-        >
-        
-        <TableLayout
-	        android:id="@+id/tableLog"
-	        android:layout_width="fill_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentRight="true"
-	        android:stretchColumns="*" >
+        android:stretchColumns="*" >
 
-		
-		
-		</TableLayout>
-    </ScrollView>
-    
-
+	 	<TableRow >
+	     	<Button
+		        android:id="@+id/emaillogbtn"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="1"
+		        android:onClick="onButtonClick"
+		        android:text="Email Log" />
+	     </TableRow>
+	</TableLayout>
 </RelativeLayout>

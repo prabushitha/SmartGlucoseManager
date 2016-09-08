@@ -1,5 +1,11 @@
 package com.whileloop.smartglucosemanager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class GlucoseEntry {
 	private int id;
@@ -17,11 +23,11 @@ public class GlucoseEntry {
 	}
 	
 	public void setDate(String date){
-		this.date=date;
+		this.date=date; //eg.2015/8/13
 	}
 	
 	public String getDate(){
-		return date;
+		return date; 
 	}
 	
 	public void setTime(String time){
@@ -44,9 +50,14 @@ public class GlucoseEntry {
 	public float getBgValue(){
 		float f;
 		try{
-			System.out.println("Glucose : "+bg+" Split : "+bg.split("BG (mg dl)")[0].trim());
+			String s = new String(bg);
+			Matcher matcher = Pattern.compile("\\d+").matcher(s);
+			matcher.find();
+			f = Float.valueOf(matcher.group());
 			
-			f = Float.parseFloat(bg.split("BG (mg dl)")[0].trim());
+			//System.out.println("Glucose : "+bg+" Split : "+bg.split("BG")[0].trim());
+			
+			//f = Float.parseFloat(bg.split("BG")[0].trim());
 		}catch(Exception e){
 			f = 0;
 		}
@@ -61,5 +72,73 @@ public class GlucoseEntry {
 	public String getTimeOfEvent(){
 		return time_of_event;
 	}
+	
+	//sorting
+	public static GlucoseEntry[] SortByDate(GlucoseEntry[] entries){
+		long[] days = new long[entries.length];
+		SimpleDateFormat sdf;
+		Date d;
+		for(int i=0;i<entries.length;i++){
+			GlucoseEntry ge = entries[i];
+			long dayCount = 0;
+			sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
+			String dformated = ge.getDate().replaceAll("-","/")+" "+ge.getTime();
+			try{
+				d = sdf.parse(dformated);
+				dayCount = d.getTime()/1000;
+				days[i] = dayCount;
+			}catch(ParseException e){
+				
+			}
+		}
+		quickSort(days,entries,0,entries.length-1);
+		return entries;
+	}
+	
+	public static void quickSort(long[] arr, GlucoseEntry[] entries, int low, int high) {
+		if (arr == null || arr.length == 0)
+			return;
+ 
+		if (low >= high)
+			return;
+ 
+		// pick the pivot
+		int middle = low + (high - low) / 2;
+		long pivot = arr[middle];
+ 
+		// make left < pivot and right > pivot
+		int i = low, j = high;
+		while (i <= j) {
+			while (arr[i] < pivot) {
+				i++;
+			}
+ 
+			while (arr[j] > pivot) {
+				j--;
+			}
+ 
+			if (i <= j) {
+				long temp = arr[i];
+				GlucoseEntry ge = entries[i];
+				
+				arr[i] = arr[j];
+				entries[i] = entries[j];
+				
+				arr[j] = temp;
+				entries[j] = ge;
+				
+				i++;
+				j--;
+			}
+		}
+ 
+		// recursively sort two sub parts
+		if (low < j)
+			quickSort(arr, entries, low, j);
+ 
+		if (high > i)
+			quickSort(arr, entries, i, high);
+	}
+	
 	
 }

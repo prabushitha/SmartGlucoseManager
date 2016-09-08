@@ -2,19 +2,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.whileloop.smartglucosemanager.CalculatorActivity" >
-
+	
+    
+    
+    
+    <TableLayout 
+        android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentRight="true"
+	    android:stretchColumns="*">
+        <TableRow 
+	        android:background="#C7C7C7"
+	        >
+            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="9"
+			    	android:gravity="center"
+		            android:text="Calculator"
+		            />
+            <Button 
+                 	android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="3"
+			    	android:text="Back"
+			    	android:onClick="onBackPress"
+                />
+        </TableRow>
+        
+    </TableLayout>
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
         android:stretchColumns="*" >
-
+		
 		<TableRow >
 
 			<TextView
@@ -23,7 +49,7 @@
 			    android:layout_height="wrap_content"
 			    android:layout_weight="1"
 			    android:gravity="center"
-			    android:text="3.6"
+			    android:text="0.0"
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
 		    
 		</TableRow>
@@ -53,6 +79,7 @@
 		      />
 
             <EditText
+               android:id="@+id/targetInp"
                android:layout_marginTop="20dp"
 		       android:layout_width="0dp"
 		       android:layout_height="wrap_content"
@@ -77,6 +104,7 @@
 		      />
 
             <EditText
+               android:id="@+id/icratioInp"
 		       android:layout_width="0dp"
 		       android:layout_height="wrap_content"
 		       android:layout_weight="5"
@@ -99,6 +127,7 @@
 		      />
 
             <EditText
+               android:id="@+id/cfactorInp"
 		       android:layout_width="0dp"
 		       android:layout_height="wrap_content"
 		       android:layout_weight="5"
@@ -135,25 +164,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
             <Button 
+               android:id="@+id/carbsBtn"
                android:layout_width="0dp"
 		       android:layout_height="wrap_content"
 		       android:gravity="center"
 		       android:layout_weight="5"
-		       android:text="50 grams"  
+		       android:text="0 grams"  
 		       />
             <Button 
+                android:id="@+id/clevelBtn"
                android:layout_width="0dp"
 		       android:layout_height="wrap_content"
 		       android:gravity="center"
 		       android:layout_weight="5"
-		       android:text="125 mg/DL" 
+		       android:text="0 mg/DL" 
                 />
         </TableRow>
         <TableRow 
             android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <Button 
+            <Button
+               android:id="@+id/calculateBtn" 
                android:layout_width="fill_parent"
 		       android:layout_height="wrap_content"
 		       android:gravity="center"

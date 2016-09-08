@@ -1,9 +1,11 @@
 package com.whileloop.smartglucosemanager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 public class MedsAndInsulineActivity extends Activity {
@@ -15,6 +17,15 @@ public class MedsAndInsulineActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_meds_and_insuline);
 
+	}
+	
+	public void onBackPress(View v){
+		onBackPressed();
+	}
+	@Override
+     public void onBackPressed(){
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
 	}
 
 	@Override
