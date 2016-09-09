@@ -29,7 +29,8 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080018;
-        public static final int action_settings=0x7f080082;
+        public static final int action_settings=0x7f080087;
+        public static final int all_logs=0x7f080083;
         public static final int answerTxt=0x7f080000;
         public static final int bgText=0x7f08001b;
         public static final int bmiInput=0x7f080054;
@@ -80,6 +81,7 @@ public final class R {
         public static final int diab_care_txt=0x7f08005b;
         public static final int dob_txt=0x7f08004c;
         public static final int durationTxt=0x7f08006a;
+        public static final int duration_select=0x7f080082;
         public static final int editText1=0x7f08003e;
         public static final int editText2=0x7f080042;
         public static final int editText3=0x7f080046;
@@ -98,6 +100,7 @@ public final class R {
         public static final int medsinsulinbtn=0x7f080031;
         public static final int mo_do_input=0x7f08005e;
         public static final int mobileInput=0x7f080059;
+        public static final int month_logs=0x7f080085;
         public static final int phoneInput=0x7f080057;
         public static final int profilebtn=0x7f080030;
         public static final int radioAfterBreakfast=0x7f08001e;
@@ -157,8 +160,10 @@ public final class R {
         public static final int toggleTime3=0x7f080027;
         public static final int toggleTime4=0x7f080029;
         public static final int typeRadioGroup=0x7f080064;
+        public static final int week_logs=0x7f080084;
         public static final int weightText=0x7f080052;
         public static final int weightTextField=0x7f080051;
+        public static final int year_logs=0x7f080086;
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
@@ -177,6 +182,7 @@ public final class R {
         public static final int activity_settings=0x7f03000d;
         public static final int activity_testing=0x7f03000e;
         public static final int prompt=0x7f03000f;
+        public static final int prompt_duration=0x7f030010;
     }
     public static final class menu {
         public static final int calculator=0x7f070000;

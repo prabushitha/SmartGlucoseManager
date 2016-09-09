@@ -2,6 +2,8 @@ package com.whileloop.smartglucosemanager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -71,6 +73,48 @@ public class GlucoseEntry {
 	
 	public String getTimeOfEvent(){
 		return time_of_event;
+	}
+	
+	public static GlucoseEntry[] LastEntries(GlucoseEntry[] entries,String type){
+		GlucoseEntry[] results = new GlucoseEntry[entries.length];
+		entries = SortByDate(entries);
+		for(int i=0;i<entries.length;i++){
+			results[i] = entries[entries.length-i-1];
+		}
+		
+		Date d;
+		Date current = new Date();
+		long currentMilies = current.getTime();
+		long timeless;
+		
+		long milisForADay = 24*60*60*1000;
+		if(type.equals("Week")){
+			timeless = 7*milisForADay;
+		}else if(type.equals("Month")){
+			timeless = 31*milisForADay;
+		}else if(type.equals("Month")){
+			timeless = 365*milisForADay;
+		}else{
+			return results;
+		}
+		
+		ArrayList<GlucoseEntry> resultEntries = new ArrayList<GlucoseEntry>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm a");
+		
+		for(int i=0;i<results.length;i++){
+			GlucoseEntry ge = results[i];
+			String dformated = ge.getDate().replaceAll("-","/")+" "+ge.getTime();
+			try{
+				d = sdf.parse(dformated);
+				long timeMilies = d.getTime();
+				if(timeMilies>currentMilies-timeless){
+					resultEntries.add(ge);
+				}
+			}catch(ParseException e){
+				
+			}
+		}
+		return resultEntries.toArray(new GlucoseEntry[resultEntries.size()]);
 	}
 	
 	//sorting

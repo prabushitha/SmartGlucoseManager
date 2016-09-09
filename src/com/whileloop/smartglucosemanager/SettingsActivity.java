@@ -1,22 +1,38 @@
 package com.whileloop.smartglucosemanager;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.opencsv.CSVWriter;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
+	Context context;
 	//EditText docEmail;
 	String subject = "Smart Glucose Manager Export Logs";
 	String toEmail = "";
 	User user;
+	Button email_btn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,31 +45,87 @@ public class SettingsActivity extends Activity {
 		if(toEmail == null || toEmail.equals("")){
 			toEmail = "";
 		}
+		context = this;
+		email_btn = (Button)findViewById(R.id.emaillogbtn);
+		OnClickListener dialogListener = new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				LayoutInflater li = LayoutInflater.from(context);
+				View promptsView = li.inflate(R.layout.prompt_duration, null);
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						context);
+				alertDialogBuilder.setView(promptsView);
+
+				final RadioGroup userInput = (RadioGroup) promptsView.findViewById(R.id.duration_select);
+				// set dialog message
+				alertDialogBuilder.setCancelable(false).setPositiveButton("OK",
+					  new DialogInterface.OnClickListener() {
+					    public void onClick(DialogInterface dialog,int id) {
+						// get user input and set it to result
+						// edit text
+					    	int selectedId = userInput.getCheckedRadioButtonId();
+					    	String type = "All";
+					    	if(selectedId==R.id.all_logs){
+					    		type = "All";
+					    	}else if(selectedId==R.id.week_logs){
+					    		type = "Week";
+					    	}else if(selectedId==R.id.month_logs){
+					    		type = "Month";
+					    	}else if(selectedId==R.id.year_logs){
+					    		type = "Year";
+					    	}
+					    	setEmail(type);
+					    }
+					  })
+					.setNegativeButton("Cancel",
+					  new DialogInterface.OnClickListener() {
+					    public void onClick(DialogInterface dialog,int id) {
+						dialog.cancel();
+					    }
+					  });
+
+				// create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+
+				// show it
+				alertDialog.show();
+			}
+		};
+		email_btn.setOnClickListener(dialogListener);
+		
 	}
-	
+	/*
 	public void onButtonClick(View v){
-		Intent intent;
     	switch (v.getId()) {
 			case R.id.emaillogbtn:
-				intent = new Intent(Intent.ACTION_SEND);
-				intent.setData(Uri.parse("mailto:"));
-				intent.setType("text/html");//text/plain
-				intent.putExtra(Intent.EXTRA_EMAIL, new String[] { toEmail });
-				intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-				intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(emailBody()));
-				try{
-					startActivity(Intent.createChooser(intent, "Send Email..."));
-					finish();
-				}catch(ActivityNotFoundException ex){
-					Toast.makeText(this, "No email client found", Toast.LENGTH_SHORT).show();
-				}
-				
+				//setEmail();
 			break;
     	}
+	}*/
+	private void setEmail(String type){
+		String attachment = saveCSV(type);
+		Intent intent;
+		intent = new Intent(Intent.ACTION_SEND);
+		intent.setData(Uri.parse("mailto:"));
+		intent.setType("text/html");//text/plain
+		intent.putExtra(Intent.EXTRA_EMAIL, new String[] { toEmail });
+		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+		intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(emailBody(type)));
+		intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(attachment));
+		try{
+			startActivity(Intent.createChooser(intent, "Send Email..."));
+			finish();
+		}catch(ActivityNotFoundException ex){
+			Toast.makeText(this, "No email client found", Toast.LENGTH_SHORT).show();
+		}
 	}
-	private String emailBody(){
+	private String emailBody(String type){//"All","Week","Month","Year"
+		/*
 		DatabaseHelper databaseHelper = new DatabaseHelper(this);
 		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
+		entries = GlucoseEntry.LastEntries(entries, type);
 		String result = "";
 		//String result = "<table>";
 		//result += "<tr><th>Date</th><th>Time</th><th>Event</th><th>Value</th></tr>";
@@ -70,8 +142,42 @@ public class SettingsActivity extends Activity {
 			//result += "<td>"+entries[i].getBg()+"</td>";
 			//result += "</tr>";
 		}
+		Log.v("Email Entries", result);
 		//result += "</table>";
 		return result;
+		*/
+		return "Smart Glucose Manager Log - "+type;
+	}
+	public String saveCSV(String type){
+		DatabaseHelper databaseHelper = new DatabaseHelper(this);
+		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
+		entries = GlucoseEntry.LastEntries(entries, type);
+		
+		String path = context.getFilesDir().getPath().toString() + "myfile.csv";
+		CSVWriter csvWriter = null;
+		try 
+		{
+			csvWriter = new CSVWriter(new FileWriter(path), ',');
+			for(int i=0;i<entries.length;i++){
+				String result = "";
+				result += (i+1)+"#";
+				result += entries[i].getDate()+"#";
+				result += entries[i].getTime()+"#";
+				result += entries[i].getTimeOfEvent()+"#";
+				result += entries[i].getBg();
+				String[] res = result.split("#");
+				csvWriter.writeNext(res); 
+			}
+		    csvWriter.close();
+		    Log.v("CSV", "success");
+		    return path;
+		} 
+		catch (IOException e)
+		{
+			Log.e("CSV", e.getMessage());
+		    //error
+		}
+		return "";
 	}
 	public void onBackPress(View v){
 		onBackPressed();

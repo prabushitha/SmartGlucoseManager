@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,90 +48,94 @@ public class SatisticsActivity extends Activity {
 		float sumBgValue = 0;
 		int totalBgValues = 0;
 		
-		
-		ArrayList<String> lineDates = new ArrayList<String>();
-		//data set 1
-		ArrayList<Entry> lineEntries = new ArrayList<Entry>();
-		
-		int j = 0;
-		for(GlucoseEntry entry:entries){
-			lineDates.add(entry.getDate());
-			lineEntries.add(new Entry(entry.getBgValue(), j));
+		try{
+			ArrayList<String> lineDates = new ArrayList<String>();
+			//data set 1
+			ArrayList<Entry> lineEntries = new ArrayList<Entry>();
 			
-			//set min/max bg values
-			if(entry.getBgValue()>maxBgValue){
-				maxBgValue = entry.getBgValue();
-			}
-			if(entry.getBgValue()<minBgValue){
-				minBgValue = entry.getBgValue();
-			}
-			sumBgValue += entry.getBgValue();
-			totalBgValues++;
-			//System.out.println("Chart : "+j+" :"+entry.getDate());
-			j++;
-		}
-		if(totalBgValues==0)totalBgValues=1;
-		avgBgValue = sumBgValue/totalBgValues;
-		
-		LineDataSet linedataset = new LineDataSet(lineEntries, "Glucose Level");
-		linedataset.setCircleColorHole(Color.BLUE);
-		linedataset.setColor(Color.BLUE);
-		//dataset 2 MIN LEVEL
-		ArrayList<Entry> lineEntries2 = new ArrayList<Entry>();
-		lineEntries2.add(new Entry(minBgValue, 0));
-		lineEntries2.add(new Entry(minBgValue, j-1));
-		
-		LineDataSet linedataset2 = new LineDataSet(lineEntries2, "Minimum Level");
-		linedataset2.setColor(Color.RED);
-		linedataset2.setDrawCircles(false);
-		linedataset2.setDrawValues(false);
-		
-		//dataset 3 MAX LEVEL
-		ArrayList<Entry> lineEntries3 = new ArrayList<Entry>();
-		lineEntries3.add(new Entry(maxBgValue, 0));
-		lineEntries3.add(new Entry(maxBgValue, j-1));
+			int j = 0;
+			for(GlucoseEntry entry:entries){
+				lineDates.add(entry.getDate());
+				lineEntries.add(new Entry(entry.getBgValue(), j));
 				
-		LineDataSet linedataset3 = new LineDataSet(lineEntries3, "Maximum Level");
-		linedataset3.setColor(Color.GREEN);
-		linedataset3.setDrawCircles(false);
-		linedataset3.setDrawValues(false);
-		
-		//dataset 3 AVG LEVEL
-		ArrayList<Entry> lineEntries4 = new ArrayList<Entry>();
-		lineEntries4.add(new Entry(avgBgValue, 0));
-		lineEntries4.add(new Entry(avgBgValue, j-1));
-						
-		LineDataSet linedataset4 = new LineDataSet(lineEntries4, "Average Level");
-		linedataset4.setColor(Color.YELLOW);
-		linedataset4.setDrawCircles(false);
-		linedataset4.setDrawValues(false);
-				
-		//
-		List<ILineDataSet> dataset = new ArrayList<ILineDataSet>();
-		dataset.add(linedataset);
-		dataset.add(linedataset2);
-		dataset.add(linedataset3);
-		dataset.add(linedataset4);
-		
-		//LineData lineData = new LineData(lineDates,linedataset);
-		LineData lineData = new LineData(lineDates,dataset);
-		lineChart.setData(lineData);
-		lineChart.setTouchEnabled(true);
-		lineChart.setDragEnabled(true);
-		lineChart.setScaleEnabled(true);
-		
-		lineChart.setVisibleXRangeMaximum(10);
-		lineChart.setDescription("");
-		lineChart.getLegend().setWordWrapEnabled(true);
-		if(j>10){
+				//set min/max bg values
+				if(entry.getBgValue()>maxBgValue){
+					maxBgValue = entry.getBgValue();
+				}
+				if(entry.getBgValue()<minBgValue){
+					minBgValue = entry.getBgValue();
+				}
+				sumBgValue += entry.getBgValue();
+				totalBgValues++;
+				//System.out.println("Chart : "+j+" :"+entry.getDate());
+				j++;
+			}
+			if(totalBgValues==0)totalBgValues=1;
+			avgBgValue = sumBgValue/totalBgValues;
 			
-			lineChart.moveViewToX(j-10);
+			LineDataSet linedataset = new LineDataSet(lineEntries, "Glucose Level");
+			linedataset.setCircleColorHole(Color.BLUE);
+			linedataset.setColor(Color.BLUE);
+			//dataset 2 MIN LEVEL
+			ArrayList<Entry> lineEntries2 = new ArrayList<Entry>();
+			lineEntries2.add(new Entry(minBgValue, 0));
+			lineEntries2.add(new Entry(minBgValue, j-1));
+			
+			LineDataSet linedataset2 = new LineDataSet(lineEntries2, "Minimum Level");
+			linedataset2.setColor(Color.RED);
+			linedataset2.setDrawCircles(false);
+			linedataset2.setDrawValues(false);
+			
+			//dataset 3 MAX LEVEL
+			ArrayList<Entry> lineEntries3 = new ArrayList<Entry>();
+			lineEntries3.add(new Entry(maxBgValue, 0));
+			lineEntries3.add(new Entry(maxBgValue, j-1));
+					
+			LineDataSet linedataset3 = new LineDataSet(lineEntries3, "Maximum Level");
+			linedataset3.setColor(Color.GREEN);
+			linedataset3.setDrawCircles(false);
+			linedataset3.setDrawValues(false);
+			
+			//dataset 3 AVG LEVEL
+			ArrayList<Entry> lineEntries4 = new ArrayList<Entry>();
+			lineEntries4.add(new Entry(avgBgValue, 0));
+			lineEntries4.add(new Entry(avgBgValue, j-1));
+							
+			LineDataSet linedataset4 = new LineDataSet(lineEntries4, "Average Level");
+			linedataset4.setColor(Color.YELLOW);
+			linedataset4.setDrawCircles(false);
+			linedataset4.setDrawValues(false);
+					
+			//
+			List<ILineDataSet> dataset = new ArrayList<ILineDataSet>();
+			dataset.add(linedataset);
+			dataset.add(linedataset2);
+			dataset.add(linedataset3);
+			dataset.add(linedataset4);
+			
+			//LineData lineData = new LineData(lineDates,linedataset);
+			LineData lineData = new LineData(lineDates,dataset);
+			lineChart.setData(lineData);
+			lineChart.setTouchEnabled(true);
+			lineChart.setDragEnabled(true);
+			lineChart.setScaleEnabled(true);
+			
+			lineChart.setVisibleXRangeMaximum(10);
+			lineChart.setDescription("");
+			lineChart.getLegend().setWordWrapEnabled(true);
+			if(j>10){
+				
+				lineChart.moveViewToX(j-10);
+			}
+			
+			XAxis xAxis = lineChart.getXAxis();
+			xAxis.setLabelRotationAngle(90.0f);
+			xAxis.setPosition(XAxisPosition.BOTTOM);
+			xAxis.setLabelsToSkip(0);
+		}catch(Exception e){
+			Log.e("Char Error", e.getMessage());
 		}
 		
-		XAxis xAxis = lineChart.getXAxis();
-		xAxis.setLabelRotationAngle(90.0f);
-		xAxis.setPosition(XAxisPosition.BOTTOM);
-		xAxis.setLabelsToSkip(0);
 
 	}
 	public void onBackPress(View v){
