@@ -1,8 +1,16 @@
 package com.whileloop.smartglucosemanager;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 import android.app.Activity;
@@ -27,6 +35,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
+	
+	
+	
+	
+	public static final String CACHE_FILE_NAME = "data.csv";
 	Context context;
 	//EditText docEmail;
 	String subject = "Smart Glucose Manager Export Logs";
@@ -76,7 +89,16 @@ public class SettingsActivity extends Activity {
 					    	}else if(selectedId==R.id.year_logs){
 					    		type = "Year";
 					    	}
-					    	setEmail(type);
+					    	StringBuilder csvContent = createCSVString(type);
+					    	String attachmentPath = "";
+					    	try{
+					    		attachmentPath = createCachedFile(context, csvContent);
+					    	}catch(IOException e){
+					    		
+					    	}
+					    	Log.v("CSV File Path",attachmentPath);
+					    	//String attachmentPath = saveCSV(type);
+					    	setEmail(type,attachmentPath);
 					    }
 					  })
 					.setNegativeButton("Cancel",
@@ -104,8 +126,7 @@ public class SettingsActivity extends Activity {
 			break;
     	}
 	}*/
-	private void setEmail(String type){
-		String attachment = saveCSV(type);
+	private void setEmail(String type,String attachmentPath){
 		Intent intent;
 		intent = new Intent(Intent.ACTION_SEND);
 		intent.setData(Uri.parse("mailto:"));
@@ -113,7 +134,7 @@ public class SettingsActivity extends Activity {
 		intent.putExtra(Intent.EXTRA_EMAIL, new String[] { toEmail });
 		intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 		intent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(emailBody(type)));
-		intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(attachment));
+		intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(attachmentPath));
 		try{
 			startActivity(Intent.createChooser(intent, "Send Email..."));
 			finish();
@@ -144,10 +165,10 @@ public class SettingsActivity extends Activity {
 		}
 		Log.v("Email Entries", result);
 		//result += "</table>";
-		return result;
-		*/
-		return "Smart Glucose Manager Log - "+type;
+		return result;*/
+		return "See the attachment for "+type+" Logs";
 	}
+	/*
 	public String saveCSV(String type){
 		DatabaseHelper databaseHelper = new DatabaseHelper(this);
 		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
@@ -179,6 +200,74 @@ public class SettingsActivity extends Activity {
 		}
 		return "";
 	}
+	public void readCSV(){
+		String path = context.getFilesDir().getPath().toString() + "myfile.csv";
+		try{
+			//Build reader instance
+		      CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
+		       
+		      //Read all rows at once
+		      List<String[]> allRows = reader.readAll();
+		       
+		      //Read CSV line by line and use the string array as you want
+		     for(String[] row : allRows){
+		        Log.v("Read CSV",Arrays.toString(row));
+		     }
+		     reader.close();
+		}catch(Exception e){
+			Log.e("CSV", e.getMessage());
+		}
+	}
+	*/
+	//caching
+	//content = id,name,time,..\n 1,umesh,12,..\n
+	public static String createCachedFile(Context context, StringBuilder content) throws IOException {
+		  String filePath = context.getCacheDir() + File.separator + CACHE_FILE_NAME;
+		  File cacheFile = new File(filePath);
+		  cacheFile.createNewFile();
+
+		  FileOutputStream fos = new FileOutputStream(cacheFile);
+		  OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF8");
+		  PrintWriter pw = new PrintWriter(osw);
+		  
+		  pw.write(content.toString());
+		  
+		  pw.flush();
+		  pw.close();
+		  
+		  return "content://" + CachedFileProvider.AUTHORITY + "/" + CACHE_FILE_NAME;
+	}
+	
+	public StringBuilder createCSVString(String type){
+		DatabaseHelper databaseHelper = new DatabaseHelper(this);
+		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
+		entries = GlucoseEntry.LastEntries(entries, type);
+		StringBuilder sb = new StringBuilder();
+        sb.append("id");
+        sb.append(',');
+        sb.append("date");
+        sb.append(',');
+        sb.append("time");
+        sb.append(',');
+        sb.append("event");
+        sb.append(',');
+        sb.append("value");
+        sb.append('\n');
+        
+			for(int i=0;i<entries.length;i++){
+				String result = "";
+				result += (i+1)+",";
+				result += entries[i].getDate()+",";
+				result += entries[i].getTime()+",";
+				result += entries[i].getTimeOfEvent()+",";
+				result += entries[i].getBg()+"\n";
+				sb.append(result);
+			}
+		   
+		
+		return sb;
+	}
+	
 	public void onBackPress(View v){
 		onBackPressed();
 	}
