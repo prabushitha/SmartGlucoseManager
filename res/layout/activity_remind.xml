@@ -17,6 +17,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
+			    	android:textSize="18sp"
 		            android:text="Reminder"
 		            />
             <Button 
@@ -36,45 +37,124 @@
 	        android:layout_alignParentRight="true"
 	        android:layout_marginTop="50dp"
 	        android:stretchColumns="*" >
-	        <TableRow >
-	            <Button
+	        
+	    
+	    	<TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+	            <ImageButton
 			        android:id="@+id/btnTesting"
+			        android:src="@drawable/alarm_testing"
+			        android:background="@null"
 			        android:layout_width="0dp"
 			        android:layout_height="fill_parent"
-			        android:layout_weight="1"
+			        android:layout_weight="3"
 			        android:onClick="@string/method_button_click"
 			        android:text="@string/testing" />
-	        </TableRow>
-	        	
-	        <TableRow >
-	            <Button
+	            
+	            <ImageButton
 			        android:id="@+id/btnInsulin"
+			        android:src="@drawable/alarm_medi"
+			        android:background="@null"
 			        android:layout_width="0dp"
 			        android:layout_height="fill_parent"
-			        android:layout_weight="1"
+			        android:layout_weight="3"
 			        android:onClick="@string/method_button_click"
 			        android:text="@string/insulin" />
 	        </TableRow>
-	        
-	        <TableRow >
-	             <Button
-			        android:id="@+id/btnMeal"
-			        android:layout_width="0dp"
+	        <!-- Adding Text Layer -->
+			 <TableRow 
+			    android:layout_height="0dp"
+			    android:layout_weight="1"
+			    android:layout_marginTop="-25dp"
+		        android:gravity="center">
+		         <TextView
+				 	android:layout_width="0dip"
 			        android:layout_height="fill_parent"
 			        android:layout_weight="1"
+			        android:gravity="center"
+			        android:text="Testing"
+				 />
+		         <TextView
+				 	android:layout_width="0dip"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="1"
+			        android:minLines="2"
+			        android:lines="2"
+			        android:gravity="center"
+			        android:text="Insulin and \n\rMedication"
+				 />
+		     </TableRow>
+		     
+		     
+			 
+			 
+			 
+			 <TableRow 
+			    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+			     >
+	             <ImageButton
+			        android:id="@+id/btnMeal"
+			        android:src="@drawable/alarm_meal"
+			        android:background="@null"
+			        android:layout_width="0dp"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="3"
 			        android:onClick="@string/method_button_click"
 			        android:text="@string/meal" />
-	        </TableRow>
-	        
-	        <TableRow >
-	            <Button
+	             
+	             <ImageButton
 			        android:id="@+id/btnExercise"
+			        android:src="@drawable/alarm_exersice"
+			        android:background="@null"
 			        android:layout_width="0dp"
 			        android:layout_height="fill_parent"
-			        android:layout_weight="1"
+			        android:layout_weight="3"
 			        android:onClick="@string/method_button_click"
 			        android:text="@string/exercises" />
 	        </TableRow>
+			 <!-- Adding Text Layer -->
+			 <TableRow 
+			    android:layout_height="0dp"
+			    android:layout_weight="1"
+			    android:layout_marginTop="-25dp"
+		        android:gravity="center">
+		         <TextView
+				 	android:layout_width="0dip"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="1"
+			        android:gravity="center"
+			        android:text="Meal"
+				 />
+		         
+		         <TextView
+				 	android:layout_width="0dip"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="1"
+			        android:gravity="center"
+			        android:text="Exercise"
+				 />
+		     </TableRow>
+		     
+			 <TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
+			 
 	</TableLayout>
 
     

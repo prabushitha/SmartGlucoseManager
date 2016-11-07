@@ -3,7 +3,7 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true" 
+    android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context="com.whileloop.smartglucosemanager.GlucoseEntryActivity" >
 	<TableLayout 
@@ -20,6 +20,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
+			    	android:textSize="18sp"
 		            android:text="Glucose Entry"
 		            />
             <Button 
@@ -77,8 +78,9 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
 			        android:ems="10"
-			        android:inputType="numberDecimal"
-			        android:hint="BG (mg dl)" />
+			        android:inputType="none"
+			        android:focusable="false"
+			        android:hint="(40-500) BG mg/dL" />
 	        </TableRow>
 	        
 	        <TableRow >
@@ -86,51 +88,93 @@
 			        android:id="@+id/radiogroup"
 			        android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
-			    	android:layout_weight="1" >
+			    	android:layout_weight="1"
+			    	 >
 			        
+						<RadioButton
+				            android:id="@+id/radioBeforeBrekfast"
+				            android:checked="true"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="Before Breakfast"
+				             />
+
+						<RadioButton
+				            android:id="@+id/radioAfterBreakfast"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="After Breakfast"
+				             />
+				    
+						<RadioButton
+				            android:id="@+id/radioBeforeLunch"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="Before Lunch"
+				             />
+
+						<RadioButton
+				            android:id="@+id/radioAfterLunch"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="After Lunch"
+				             />
 			        
-			        <RadioButton
-			            android:id="@+id/radioBeforeBrekfast"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
-			            android:checked="true"
-			            android:background="#ececec"
-			            android:text="Before Breakfast" />
-			
+						<RadioButton
+				            android:id="@+id/radioBeforeDinner"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="Before Dinner"
+				             />
+				    
+						<RadioButton
+				            android:id="@+id/radioAfterDinner"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="After Dinner"
+				             />
+				    
+						<RadioButton
+				            android:id="@+id/radioBedTime"
+				            android:layout_width="wrap_content"
+				        	android:layout_height="match_parent"
+				        	android:text="Bed Time"
+				             />
+					<!-- 
 			        <RadioButton
 			            android:id="@+id/radioAfterBreakfast"
-			            android:layout_width="312dp"
-			            android:layout_height="wrap_content"
 			            android:background="#ececec"
+			            android:paddingLeft="10dip"
 			            android:text="After Breakfast" />
 			        
 			        <RadioButton
 			            android:id="@+id/radioBeforeLunch"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
 			            android:background="#ececec"
+			            android:paddingLeft="10dip"
 			            android:text="Before Lunch" />
 			        
 			        <RadioButton
 			            android:id="@+id/radioAfterLunch"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
 			            android:background="#ececec"
+			            android:paddingLeft="10dip"
 			            android:text="After Lunch" />
 			        
 			        <RadioButton
 			            android:id="@+id/radioBeforeDinner"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
 			            android:background="#ececec"
+			            android:paddingLeft="10dip"
 			            android:text="Before Dinner" />
 			        
 			        <RadioButton
 			            android:id="@+id/radioAfterDinner"
-			            android:layout_width="match_parent"
-			            android:layout_height="wrap_content"
 			            android:background="#ececec"
+			            android:paddingLeft="10dip"
 			            android:text="After Dinner" />
+			        <RadioButton
+			            android:id="@+id/radioBedTime"
+			            android:background="#ececec"
+			            android:paddingLeft="10dip"
+			            android:text="Bed Time" /> -->
 			           
 			    </RadioGroup>
 	        </TableRow>

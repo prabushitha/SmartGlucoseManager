@@ -18,6 +18,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
+			    	android:textSize="18sp"
 		            android:text="Testing"
 		            />
             <Button 
@@ -53,7 +54,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="MON" />
 			    
 			    <com.whileloop.customuis.WeekCheckBox
@@ -61,7 +62,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="TUE" />
 			
 			    <com.whileloop.customuis.WeekCheckBox
@@ -69,7 +70,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="WED" />
 			
 			    <com.whileloop.customuis.WeekCheckBox
@@ -77,7 +78,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="THU" />
 			
 			    <com.whileloop.customuis.WeekCheckBox
@@ -85,21 +86,21 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
-			        android:text="FRI" />
+			        android:textColor="#000000"
+			        android:text="FRI " />
 			    <com.whileloop.customuis.WeekCheckBox
 			        android:id="@+id/checkSat"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="SAT" />
 			    <com.whileloop.customuis.WeekCheckBox
 			        android:id="@+id/checkSun"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:button="@null"
-			        android:textColor="#FFFFFF"
+			        android:textColor="#000000"
 			        android:text="SUN" />
 		   </LinearLayout>
         </TableRow>

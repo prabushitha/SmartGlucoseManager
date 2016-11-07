@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.whileloop.smartglucosemanager.SatisticsActivity" >
     
-    <TableLayout 
+    <TableLayout
         	android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_alignParentLeft="true"
@@ -18,7 +18,8 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="Statistics"
+			    	android:textSize="18sp"
+		            android:text="Graph"
 		            />
             <Button 
                  	android:layout_width="0dp"
@@ -31,19 +32,17 @@
     </TableLayout>
     
     <TableLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
-        android:stretchColumns="*" 
+        android:stretchColumns="*"
         >
         <TableRow >
-            <com.github.mikephil.charting.charts.LineChart
-			    android:layout_width="match_parent"
-			    android:layout_height="400dp"
-			    android:id="@+id/linegraph">
-			    
+	        <com.github.mikephil.charting.charts.LineChart
+				    android:layout_width="match_parent"
+				    android:layout_height="0dp"
+				    android:id="@+id/linegraph">
+				    
 			</com.github.mikephil.charting.charts.LineChart>
         </TableRow>
         

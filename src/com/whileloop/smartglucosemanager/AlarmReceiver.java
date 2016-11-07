@@ -10,6 +10,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.util.Log;
 
 public class AlarmReceiver extends BroadcastReceiver{
@@ -41,28 +44,36 @@ public class AlarmReceiver extends BroadcastReceiver{
 		//check whether the alarm is set for today
 		if(alarmType==0 && todayStatusAlarm1){
 			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
-			notification(context,"Smart Glucose Manager","You should do a test");
+			notification(context,"Smart Glucose Manager","You should do a test",true);
 		}else if(alarmType==1 && todayStatusAlarm2){
 			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
-			notification(context,"Smart Glucose Manager","You should get insuling & medication");
+			notification(context,"Smart Glucose Manager","You should get insuling & medication",false);
 			
 		}else if(alarmType==2 && todayStatusAlarm3){
 			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
-			notification(context,"Smart Glucose Manager","You should get meals");
+			notification(context,"Smart Glucose Manager","You should get meals",false);
 			
 		}else if(alarmType==3 && todayStatusAlarm4){
 			Log.e("Alarm Alert","ALARM type:"+alarmType+"   id:"+alarmId);
-			notification(context,"Smart Glucose Manager","You should do excerise");
+			notification(context,"Smart Glucose Manager","You should do excerise",false);
 			
 		}else{
 			Log.e("Alarm Alert","Alarm is not set for today");
 		}
 	}
-	public void notification(Context context,String title,String message){
-		
-		Intent intent = new Intent(context, GlucoseEntryActivity.class);
+	public void notification(Context context,String title,String message,boolean isActivity){
+		Intent intent = new Intent();
         PendingIntent pIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), intent, 0);
+		if(isActivity){
+			intent = new Intent(context, GlucoseEntryActivity.class);
+			pIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), intent, 0);
+		}
 		
+		//get user settings
+		Setting setting = Setting.getSetting(context);
+		if(setting==null){
+			setting = new Setting();
+		}
      // Build notification
         // Actions are just fake
         Notification noti = new Notification.Builder(context)
@@ -70,11 +81,38 @@ public class AlarmReceiver extends BroadcastReceiver{
                         .setContentText(message).setSmallIcon(R.drawable.ic_launcher)
                         .setContentIntent(pIntent).build();
         
+        //sound and vibrate
+        if(setting.isVibrate){
+        	noti.defaults |= Notification.DEFAULT_VIBRATE;
+        }
+        if(setting.isSound){
+        	noti.sound = Uri.parse("android.resource://"+ context.getPackageName() + "/" + R.raw.alarm1);
+        }
+        
 		NotificationManager ntm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 		// hide the notification after its selected
         noti.flags |= Notification.FLAG_AUTO_CANCEL;
 
         ntm.notify(0, noti);
         
+        //turn on screen
+        PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+
+        @SuppressWarnings("deprecation")
+		boolean isScreenOn = pm.isScreenOn();
+
+        Log.e("screen on.................................", ""+isScreenOn);
+
+        if(isScreenOn==false)
+        {
+
+       @SuppressWarnings("deprecation")
+	WakeLock wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK |PowerManager.ACQUIRE_CAUSES_WAKEUP |PowerManager.ON_AFTER_RELEASE,"MyLock");
+
+                           wl.acquire(10000);
+       WakeLock wl_cpu = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,"MyCpuLock");
+
+                wl_cpu.acquire(10000);
+        }
 	}
 }

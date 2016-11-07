@@ -23,7 +23,8 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="Meds and Insuline"
+			    	android:textSize="18sp"
+		            android:text="Insulin and Other Injections"
 		            />
             <Button 
                  	android:layout_width="0dp"
@@ -45,16 +46,20 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:stretchColumns="*">
-	
-	    	<TableRow >
+	    	<TableRow 
+	    	    android:layout_marginTop="10dp"
+	    	    >
 	    	    <TextView
 			        android:id="@+id/textView3"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:text="Not Insulin" />
+			        android:textStyle="bold"
+			        android:text="Non Insulin Injection" />
 	    	</TableRow>
 			
-	    	<TableRow >
+	    	<TableRow 
+	    	    android:layout_marginTop="10dp"
+	    	    >
 	    	    <Spinner
 			        android:id="@+id/ni_spinner1"
 			        android:layout_width="match_parent"
@@ -89,15 +94,20 @@
 			         android:textSize="20sp" />
 	    	</TableRow>
 	    	
-	    	<TableRow >
+	    	<TableRow 
+	    	    android:layout_marginTop="15dp"
+	    	    >
 	    	    <TextView
 			        android:id="@+id/textView4"
 			        android:layout_width="match_parent"
 			        android:layout_height="wrap_content"
-			        android:text="Insulin" />
+			        android:textStyle="bold"
+			        android:text="Insulin Injection" />
 	    	</TableRow>
 			
-	    	<TableRow >
+	    	<TableRow 
+	    	    android:layout_marginTop="15dp"
+	    	    >
 	    	    <TextView
 			        android:id="@+id/textView5"
 			        android:layout_width="match_parent"
@@ -107,7 +117,9 @@
 			        />
 	    	</TableRow>
 	    
-	    	<TableRow >
+	    	<TableRow 
+	    	    android:layout_marginTop="7dp"
+	    	    >
 	    	    <Spinner
 			        android:id="@+id/li_spinner1"
 			        android:layout_width="match_parent"
@@ -139,7 +151,9 @@
 			        android:textSize="20sp" />
 	     	</TableRow>
 	     
-	      	<TableRow >
+	      	<TableRow 
+	      	    android:layout_marginTop="15dp"
+	      	    >
 	      	    <TextView
 			        android:id="@+id/textView6"
 			        android:layout_width="match_parent"
@@ -148,7 +162,9 @@
 			        android:text="Rapid Acting Insulin" />
 	      	</TableRow>
 	      
-	       <TableRow >
+	       <TableRow 
+	           android:layout_marginTop="7dp"
+	           >
 	           <Spinner
 			        android:id="@+id/ri_spinner1"
 			        android:layout_width="match_parent"
@@ -180,7 +196,9 @@
 			        android:spinnerMode="dropdown" />
 	       </TableRow>
 	      	
-	       <TableRow >
+	       <TableRow 
+	           android:layout_marginTop="15dp"
+	           >
 	           <TextView
 			        android:id="@+id/textView7"
 			        android:layout_width="match_parent"
@@ -189,7 +207,9 @@
 			        android:text="Premix Insulin"/>
 	       </TableRow>
 	       
-	       <TableRow >
+	       <TableRow 
+	           android:layout_marginTop="7dp"
+	           >
 	           <Spinner
 			         android:id="@+id/pi_spinner1"
 			         android:layout_width="match_parent"
@@ -222,7 +242,9 @@
 			        android:spinnerMode="dropdown" />
 	       </TableRow>
 	       
-	       <TableRow >
+	       <TableRow 
+	           android:layout_marginTop="15dp"
+	           >
 	           <TextView
 			        android:id="@+id/textView8"
 			        android:layout_width="match_parent"
@@ -232,7 +254,9 @@
 			        android:text="Inhaled Insulin"/>
 	       </TableRow>
 	       
-	       <TableRow >
+	       <TableRow 
+	           android:layout_marginTop="7dp"
+	           >
 	           <Spinner
 			        android:id="@+id/ii_spinner1"
 			        android:layout_width="match_parent"
@@ -264,6 +288,42 @@
 			         android:scrollbarStyle="insideInset"
 			         android:spinnerMode="dropdown"
 			         android:text="select"
+			         android:textSize="20sp" />
+			</TableRow>
+			
+			<!--Writing Medications  -->
+			<TableRow 
+			    android:layout_marginTop="15dp"
+			    >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+		            android:text="Writing Medication" />
+			</TableRow>
+			
+			<TableRow >
+		        <EditText
+		            android:id="@+id/writing_medi_meds"
+		            android:inputType="textMultiLine"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:minHeight="60dp"
+			    	android:isScrollContainer="true"
+		            android:ems="10"
+		             />
+	        </TableRow>
+			
+			<TableRow >
+			    <Button
+			         android:id="@+id/btn_save"
+			         android:layout_width="0dp"
+			         android:layout_height="wrap_content"
+			         android:layout_weight="1"
+			         android:onClick="onClickSave"
+			         android:text="Save"
 			         android:textSize="20sp" />
 			</TableRow>
 	    

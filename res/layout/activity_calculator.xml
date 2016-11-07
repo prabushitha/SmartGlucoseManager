@@ -23,6 +23,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
+			    	android:textSize="18sp"
 		            android:text="Calculator"
 		            />
             <Button 
@@ -52,6 +53,7 @@
 			    android:layout_weight="1"
 			    android:gravity="center"
 			    android:text="0.0"
+			    android:textSize="30sp"
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
 		    
 		</TableRow>
@@ -171,6 +173,7 @@
 		       android:layout_height="wrap_content"
 		       android:gravity="center"
 		       android:layout_weight="5"
+		       android:textSize="21sp"
 		       android:text="0 grams"  
 		       />
             <Button 
@@ -179,6 +182,7 @@
 		       android:layout_height="wrap_content"
 		       android:gravity="center"
 		       android:layout_weight="5"
+		       android:textSize="21sp"
 		       android:text="0 mg/DL" 
                 />
         </TableRow>

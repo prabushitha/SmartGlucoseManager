@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true" 
+    android:focusableInTouchMode="true"
     tools:context="com.whileloop.smartglucosemanager.DCTActivity" >
 
 	<TableLayout 
@@ -18,7 +20,8 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="DCT"
+			    	android:textSize="18sp"
+		            android:text="Diabetes Care Team"
 		            />
             <Button 
                  	android:layout_width="0dp"
@@ -30,5 +33,370 @@
         </TableRow>
         
     </TableLayout>
+    
+	<ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_marginTop="50dp"
+	    >
+	    <TableLayout
+	    	android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:stretchColumns="*" >
+            <!-- Primary Physician -->
+            <TableRow >
+                <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Primary Physician" />
+            </TableRow>
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Name" />
+				
+		        <EditText
+		            android:id="@+id/pp_name"
+		            android:onClick="onItemClick"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Phone Numbers" />
+				
+		        <EditText
+		            android:id="@+id/pp_phones"
+		            android:inputType="textMultiLine"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:isScrollContainer="true"
+		            android:ems="10"
+		             />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Fax" />
+				
+		        <EditText
+		            android:id="@+id/pp_fax"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Email" />
+				
+		        <EditText
+		            android:id="@+id/pp_email"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="textEmailAddress" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Last Visit"
+		            />
+	            <EditText
+		            android:id="@+id/pp_last_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Next Visit"
+		            />
+	            <EditText
+		            android:id="@+id/pp_next_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        
+	        <!-- Endocrinologist -->
+            <TableRow 
+                android:layout_marginTop="15dp"
+                >
+                <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Endocrinologist" />
+            </TableRow>
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Name" />
+				
+		        <EditText
+		            android:id="@+id/e_name"
+		            android:onClick="onItemClick"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Phone Numbers" />
+				
+		        <EditText
+		            android:id="@+id/e_phones"
+		            android:inputType="textMultiLine"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:isScrollContainer="true"
+		            android:ems="10"
+		             />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Fax" />
+				
+		        <EditText
+		            android:id="@+id/e_fax"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Email" />
+				
+		        <EditText
+		            android:id="@+id/e_email"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="textEmailAddress" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Last Visit"
+		            />
+	            <EditText
+		            android:id="@+id/e_last_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Next Visit"
+		            />
+	            <EditText
+		            android:id="@+id/e_next_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        
+	        <!-- Diabetes Educator -->
+            <TableRow 
+                android:layout_marginTop="15dp"
+                >
+                <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Diabetes Educator" />
+            </TableRow>
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Name" />
+				
+		        <EditText
+		            android:id="@+id/de_name"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Phone Numbers" />
+				
+		        <EditText
+		            android:id="@+id/de_phones"
+		            android:inputType="textMultiLine"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:isScrollContainer="true"
+		            android:ems="10"
+		             />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Fax" />
+				
+		        <EditText
+		            android:id="@+id/de_fax"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="text" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Email" />
+				
+		        <EditText
+		            android:id="@+id/de_email"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:ems="10"
+		            android:inputType="textEmailAddress" />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Last Visit"
+		            />
+	            <EditText
+		            android:id="@+id/de_last_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+		            android:text="Next Visit"
+		            />
+	            <EditText
+		            android:id="@+id/de_next_visit"
+		            android:layout_width="0dp"
+		            android:layout_weight="1"
+		            android:onClick="onItemClick"
+		            android:inputType="none"
+			        android:focusable="false" >
+		        </EditText>
+	        </TableRow>
+	        
+	        
+	        <!-- Save button -->
+	        <TableRow 
+	            android:layout_marginTop="15dp"
+	            >
+	            <Button 
+	               	android:id="@+id/btnSave"
+			        android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			        android:onClick="onClickSave"
+			        android:text="Save"/>
+	        </TableRow>
+	    </TableLayout>
+	</ScrollView>
 
 </RelativeLayout>

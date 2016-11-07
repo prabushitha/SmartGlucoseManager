@@ -86,7 +86,7 @@ public class ExerciseActivity extends Activity implements OnClickListener{
 						for(int j=0;j<days.length;j++){
 							if(alarmEntry.getWeekInfo(j+1).equals(AlarmEntry.ALARM_ON)){
 								days[j].setChecked(true);
-								days[j].setTextColor(Color.BLACK);
+								days[j].setTextColor(Color.WHITE);
 							}
 						}
 					}
@@ -119,10 +119,10 @@ public class ExerciseActivity extends Activity implements OnClickListener{
 					days[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 						public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 							if(isChecked){
-								buttonView.setTextColor(Color.BLACK);
+								buttonView.setTextColor(Color.WHITE);
 							}
 							else {
-								buttonView.setTextColor(Color.WHITE);
+								buttonView.setTextColor(Color.BLACK);
 							}
 							setAlarmDays();
 							//add to sharedprefs

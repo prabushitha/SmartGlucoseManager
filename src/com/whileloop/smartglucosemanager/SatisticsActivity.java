@@ -12,6 +12,7 @@ import java.util.TreeMap;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -21,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,11 +43,15 @@ public class SatisticsActivity extends Activity {
 		//Database Helper
 		databaseHelper = new DatabaseHelper(this);
 		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
+		
 		//Line chart
 		lineChart = (LineChart)findViewById(R.id.linegraph);
 		
-		
-		
+		//Set height of chart
+		DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();    
+		float dpHeight = displayMetrics.heightPixels; // displayMetrics.density;
+		//final float scale = displayMetrics.density;
+		lineChart.getLayoutParams().height=(int)(dpHeight-100*displayMetrics.density);
 		try{
 			//xAxis values
 			ArrayList<String> lineDates = new ArrayList<String>();
@@ -60,7 +66,7 @@ public class SatisticsActivity extends Activity {
 			//adding xAxis values (dates) and classinfying entries for each day
 			for(int i=0;i<entries.length;i++){
 				GlucoseEntry entry = entries[i];
-				if(i>1 && entry.getDate().equals(entries[i-1].getDate())){
+				if(i>0 && entry.getDate().equals(entries[i-1].getDate())){
 					int xIndex = j-1;
 					allDayEntries.get(xIndex).add(new Entry(entry.getBgValue(), xIndex));
 				}else{
@@ -158,6 +164,17 @@ public class SatisticsActivity extends Activity {
 			xAxis.setLabelRotationAngle(90.0f);
 			xAxis.setPosition(XAxisPosition.BOTTOM);
 			xAxis.setLabelsToSkip(0);
+			
+			/*
+			YAxis yAxisLeft = lineChart.getAxisLeft();
+			yAxisLeft.setAxisMinValue(35f);
+			yAxisLeft.setAxisMaxValue(550f);
+			yAxisLeft.setLabelCount(15, true);
+			
+			YAxis yAxisRight = lineChart.getAxisRight();
+			yAxisRight.setAxisMinValue(35f);
+			yAxisRight.setAxisMaxValue(550f);
+			yAxisRight.setLabelCount(15, true);*/
 		}catch(Exception e){
 			Log.e("Char Error", e.getMessage());
 		}

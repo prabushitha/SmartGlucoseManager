@@ -28,18 +28,23 @@
 		                android:textSize="12sp" />
 		
 		            <RadioButton
-		                android:id="@+id/week_logs"
-		                android:text="Last Week"
+		                android:id="@+id/day07_logs"
+		                android:text="7 days"
 		                android:textSize="12sp" />
 		            
 		            <RadioButton
-		                android:id="@+id/month_logs"
-		                android:text="Last Month"
+		                android:id="@+id/day14_logs"
+		                android:text="14 days"
 		                android:textSize="12sp" />
 		            
 		            <RadioButton
-		                android:id="@+id/year_logs"
-		                android:text="Last Year"
+		                android:id="@+id/day30_logs"
+		                android:text="30 days"
+		                android:textSize="12sp" />
+		            
+		            <RadioButton
+		                android:id="@+id/day90_logs"
+		                android:text="3 Months"
 		                android:textSize="12sp" />
 		
 			</RadioGroup>

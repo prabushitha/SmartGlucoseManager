@@ -23,6 +23,7 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
+			    	android:textSize="18sp"
 		            android:text="Profile"
 		            />
             <Button 
@@ -86,13 +87,20 @@
 		            <RadioButton
 		                android:id="@+id/maleRadio"
 		                android:checked="true"
+		                android:paddingLeft="6dip"
+		                 />
+		            <TextView 
 		                android:text="Male"
-		                android:textSize="12sp" />
+		                android:textSize="12sp"
+		                />
 		
 		            <RadioButton
 		                android:id="@+id/femalRadio"
+		                android:paddingLeft="6dip" />
+		            <TextView 
 		                android:text="Female"
-		                android:textSize="12sp" />
+		                android:textSize="12sp"
+		                />
 		
 		 		</RadioGroup>
 	        </TableRow>
@@ -108,14 +116,16 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
 		            android:text="Height" />
-		
-		        <EditText
-		            android:id="@+id/weightTextField"
+	            
+	            <EditText
+		            android:id="@+id/heightTextField"
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
 		            android:ems="10"
-		            android:inputType="number" />
+		            android:inputType="numberDecimal" />
+		
+		        
 				<TextView
 		            android:id="@+id/weightText"
 		            android:layout_width="0dp"
@@ -123,13 +133,15 @@
 			    	android:layout_weight="1"
 		            android:text="Weight" />
 				
-		        <EditText
-		            android:id="@+id/heightTextField"
+				<EditText
+		            android:id="@+id/weightTextField"
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
 		            android:ems="10"
-		            android:inputType="number" />
+		            android:inputType="numberDecimal" />
+				
+		        
 		
 		        
 	        </TableRow>
@@ -150,6 +162,7 @@
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
+			    	android:focusable="false"
 		            android:ems="10"
 		            android:inputType="number" />
 	        </TableRow>
@@ -177,7 +190,7 @@
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
-		            android:text="HomePhone" />
+		            android:text="Home Phone" />
 		
 		        <EditText
 		            android:id="@+id/phoneInput"
@@ -195,7 +208,7 @@
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
-		            android:text="MobilePhone" />
+		            android:text="Mobile Phone" />
 		
 		        <EditText
 		            android:id="@+id/mobileInput"
@@ -213,7 +226,7 @@
 		            android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
-		            android:text="Diabtes Care Provider" />
+		            android:text="Diabetes Care Provider" />
 		
 		        <EditText
 		            android:id="@+id/diab_care_txt"
@@ -308,29 +321,29 @@
 		            <RadioButton
 		                android:id="@+id/dType1"
 		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:checked="true"
+				        android:layout_height="match_parent"
 		                android:text="Type 1"
 		                android:textSize="12sp" />
 		
 		            <RadioButton
 		                android:id="@+id/dType2"
 		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 		                android:text="Type 2"
 		                android:textSize="12sp" />
 		            
 		            <RadioButton
 		                android:id="@+id/dType3"
 		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 		                android:text="Unknown"
 		                android:textSize="12sp" />
 		            
 		            <RadioButton
 		                android:id="@+id/dType4"
 		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
+		                android:checked="true"
 		                android:text="None"
 		                android:textSize="12sp" />
 		
@@ -372,85 +385,86 @@
 	        
 	        <TableRow >
 	            <LinearLayout 
-				    android:layout_width="fill_parent"
-	   				android:layout_height="fill_parent"
+				    android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
 	   				android:orientation="vertical">
 				    <CheckBox
 			            android:id="@+id/checkBox5"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="None" />
 			        
 			        <CheckBox
 			            android:id="@+id/checkBox6"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Unknown" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox7"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Neuropathy" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox8"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Gastroparesis" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox9"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="CAD" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox10"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="CVA" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox11"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="PVD" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox12"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="ED" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox13"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Obstructive sleep apnea" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox14"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Depression" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox15"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Deafness" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox16"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Dental Complications" />
 			
 			        <CheckBox
 			            android:id="@+id/checkBox17"
 			            android:layout_width="wrap_content"
-			            android:layout_height="wrap_content"
+				        android:layout_height="match_parent"
 			            android:text="Cancer" />
 				    
 				</LinearLayout>
@@ -458,12 +472,75 @@
 	        
 	        <TableRow >
 	            <Button 
-	               android:id="@+id/btnSave"
+	               	android:id="@+id/btnSave"
 			        android:layout_width="0dp"
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="1"
 			        android:onClick="onClickSave"
 			        android:text="Save"/>
+	        </TableRow>
+	        
+	        <!-- Medications -->
+	        <!-- Oral Medications -->
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"/>
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Oral Medications : " />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <LinearLayout 
+	                android:id="@+id/oralLayout"
+				    android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:layout_marginLeft="8dp"
+	   				android:orientation="vertical">
+			        
+	            </LinearLayout>
+	            
+	        </TableRow>
+	        
+	        <!-- Insuline and Other Medications -->
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"/>
+	        </TableRow>
+	        
+	        <TableRow >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Insulin and Other Injections : " />
+	        </TableRow>
+	        
+	        <TableRow >
+	            <LinearLayout 
+	                android:id="@+id/insulineLayout"
+				    android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:layout_marginLeft="8dp"
+	   				android:orientation="vertical">
+			        
+	            </LinearLayout>
+	            
 	        </TableRow>
 	        
 	    </TableLayout>

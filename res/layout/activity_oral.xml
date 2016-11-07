@@ -1,0 +1,330 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true" 
+    android:focusableInTouchMode="true"
+    tools:context="com.whileloop.smartglucosemanager.OralActivity" >
+    
+    
+    
+    <TableLayout 
+        	android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:stretchColumns="*">
+        <TableRow 
+	        android:background="#C7C7C7"
+	        >
+            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="9"
+			    	android:gravity="center"
+			    	android:textSize="18sp"
+		            android:text="Oral Medications"
+		            />
+            <Button 
+                 	android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="3"
+			    	android:text="Back"
+			    	android:onClick="onBackPress"
+                />
+        </TableRow>
+    </TableLayout>
+	<ScrollView
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:fillViewport="true"
+	    android:layout_marginTop="50dp"
+	    >
+	
+	   <TableLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:stretchColumns="*">
+			
+	      	<!-- Medication 01 -->
+	      	<TableRow >
+	    	    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textStyle="bold"
+			    	android:background="#C7C7C7"
+			        android:text="Medications 01" />
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_marginTop="5dp"
+	    	    >
+	    	    <Spinner
+			        android:id="@+id/om1_spinner1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:foregroundGravity="center"
+			        android:scrollbarStyle="insideInset"
+			        android:spinnerMode="dropdown"
+			        android:textSize="20sp" />
+	    	</TableRow>
+			
+	    	<TableRow >
+	    	    <Spinner
+			        android:id="@+id/om1_spinner2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:color="#000"
+			        android:textSize="20sp"
+			        android:scrollbarStyle="insideOverlay"
+			        android:spinnerMode="dropdown" />
+	    	</TableRow>
+	    	
+	    	<TableRow >
+	    	    <Spinner
+			         android:id="@+id/om1_spinner3"
+			         android:layout_width="match_parent"
+			         android:layout_height="wrap_content"
+			         android:background="@android:drawable/btn_dropdown"
+			         android:scrollbarStyle="insideInset"
+			         android:spinnerMode="dropdown"
+			         android:textSize="20sp" />
+	    	</TableRow>
+	    	
+	    	<!-- Medication 02 -->
+	      	<TableRow
+				android:layout_marginTop="15dp"
+			>
+	    	    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textStyle="bold"
+			    	android:background="#C7C7C7"
+			        android:text="Medications 02" />
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_marginTop="5dp"
+	    	    >
+	    	    <Spinner
+			        android:id="@+id/om2_spinner1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:foregroundGravity="center"
+			        android:scrollbarStyle="insideInset"
+			        android:spinnerMode="dropdown"
+			        android:textSize="20sp" />
+	    	</TableRow>
+			
+	    	<TableRow >
+	    	    <Spinner
+			        android:id="@+id/om2_spinner2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:color="#000"
+			        android:textSize="20sp"
+			        android:scrollbarStyle="insideOverlay"
+			        android:spinnerMode="dropdown" />
+	    	</TableRow>
+	    	
+	    	<TableRow >
+	    	    <Spinner
+			         android:id="@+id/om2_spinner3"
+			         android:layout_width="match_parent"
+			         android:layout_height="wrap_content"
+			         android:background="@android:drawable/btn_dropdown"
+			         android:scrollbarStyle="insideInset"
+			         android:spinnerMode="dropdown"
+			         android:textSize="20sp" />
+	    	</TableRow>
+	    	
+	    	<!-- Medication 03 -->
+	      	<TableRow 
+	      	    android:layout_marginTop="15dp"
+	      	    >
+	    	    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textStyle="bold"
+			    	android:background="#C7C7C7"
+			        android:text="Medications 03" />
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_marginTop="5dp"
+	    	    >
+	    	    <Spinner
+			        android:id="@+id/om3_spinner1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:foregroundGravity="center"
+			        android:scrollbarStyle="insideInset"
+			        android:spinnerMode="dropdown"
+			        android:textSize="20sp" />
+	    	</TableRow>
+			
+	    	<TableRow >
+	    	    <Spinner
+			        android:id="@+id/om3_spinner2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:color="#000"
+			        android:textSize="20sp"
+			        android:scrollbarStyle="insideOverlay"
+			        android:spinnerMode="dropdown" />
+	    	</TableRow>
+	    	
+	    	<TableRow >
+	    	    <Spinner
+			         android:id="@+id/om3_spinner3"
+			         android:layout_width="match_parent"
+			         android:layout_height="wrap_content"
+			         android:background="@android:drawable/btn_dropdown"
+			         android:scrollbarStyle="insideInset"
+			         android:spinnerMode="dropdown"
+			         android:textSize="20sp" />
+	    	</TableRow>
+	    	
+	    	<!-- Medication 04 -->
+	      	<TableRow 
+	      	    android:layout_marginTop="15dp"
+	      	    >
+	    	    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textStyle="bold"
+			    	android:background="#C7C7C7"
+			        android:text="Medications 04" />
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_marginTop="5dp"
+	    	    >
+	    	    <Spinner
+			        android:id="@+id/om4_spinner1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:foregroundGravity="center"
+			        android:scrollbarStyle="insideInset"
+			        android:spinnerMode="dropdown"
+			        android:textSize="20sp" />
+	    	</TableRow>
+			
+	    	<TableRow >
+	    	    <Spinner
+			        android:id="@+id/om4_spinner2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:color="#000"
+			        android:textSize="20sp"
+			        android:scrollbarStyle="insideOverlay"
+			        android:spinnerMode="dropdown" />
+	    	</TableRow>
+	    	
+	    	<TableRow >
+	    	    <Spinner
+			         android:id="@+id/om4_spinner3"
+			         android:layout_width="match_parent"
+			         android:layout_height="wrap_content"
+			         android:background="@android:drawable/btn_dropdown"
+			         android:scrollbarStyle="insideInset"
+			         android:spinnerMode="dropdown"
+			         android:textSize="20sp" />
+	    	</TableRow>
+	    	
+	    	<!-- Medication 05 -->
+	      	<TableRow 
+	      	    android:layout_marginTop="15dp"
+	      	    >
+	    	    <TextView
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textStyle="bold"
+			    	android:background="#C7C7C7"
+			        android:text="Medications 05" />
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_marginTop="5dp"
+	    	    >
+	    	    <Spinner
+			        android:id="@+id/om5_spinner1"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:foregroundGravity="center"
+			        android:scrollbarStyle="insideInset"
+			        android:spinnerMode="dropdown"
+			        android:textSize="20sp" />
+	    	</TableRow>
+			
+	    	<TableRow >
+	    	    <Spinner
+			        android:id="@+id/om5_spinner2"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:background="@android:drawable/btn_dropdown"
+			        android:color="#000"
+			        android:textSize="20sp"
+			        android:scrollbarStyle="insideOverlay"
+			        android:spinnerMode="dropdown" />
+	    	</TableRow>
+	    	
+	    	<TableRow >
+	    	    <Spinner
+			         android:id="@+id/om5_spinner3"
+			         android:layout_width="match_parent"
+			         android:layout_height="wrap_content"
+			         android:background="@android:drawable/btn_dropdown"
+			         android:scrollbarStyle="insideInset"
+			         android:spinnerMode="dropdown"
+			         android:textSize="20sp" />
+	    	</TableRow>
+	    	
+	    	<!--Writing Medications  -->
+			<TableRow 
+			    android:layout_marginTop="15dp"
+			    >
+	            <TextView
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:textStyle="bold"
+			    	android:background="#C7C7C7"
+		            android:text="Writing Medication" />
+			</TableRow>
+			
+			<TableRow 
+			    android:layout_marginTop="5dp"
+			    >
+		        <EditText
+		            android:id="@+id/writing_medi_oral"
+		            android:inputType="textMultiLine"
+		            android:layout_width="0dp"
+			    	android:layout_height="wrap_content"
+			    	android:layout_weight="1"
+			    	android:minHeight="60dp"
+			    	android:isScrollContainer="true"
+		            android:ems="10"
+		             />
+	        </TableRow>
+	    	
+	    	<!-- Save Button -->
+	    	<TableRow >
+			    <Button
+			         android:id="@+id/btn_save"
+			         android:layout_width="0dp"
+			         android:layout_height="wrap_content"
+			         android:layout_weight="1"
+			         android:onClick="onClickSave"
+			         android:text="Save"
+			         android:textSize="20sp" />
+			</TableRow>
+	    </TableLayout>
+	</ScrollView>
+
+
+</RelativeLayout>

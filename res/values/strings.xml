@@ -29,5 +29,8 @@
     <string name="title_activity_meal">MealActivity</string>
     <string name="title_activity_exercise">ExerciseActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="sgm">SGM</string>
+    <string name="title_activity_meds_and_insuline_home">MedsAndInsulineHomeActivity</string>
+    <string name="title_activity_oral">OralActivity</string>
 
 </resources>

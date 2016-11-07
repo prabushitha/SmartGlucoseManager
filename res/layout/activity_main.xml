@@ -15,9 +15,10 @@
 	        >
             <TextView
 		            android:layout_width="0dp"
-			    	android:layout_height="wrap_content"
+			    	android:layout_height="40sp"
 			    	android:layout_weight="1"
 			    	android:gravity="center"
+			    	android:textSize="20sp"
 		            android:text="Smart Glucose Manager"
 		            />
         </TableRow>
@@ -32,71 +33,194 @@
         android:stretchColumns="*" >
         
         
-	 <TableRow >
-	     <Button
-	        android:id="@+id/button1"
-	        android:layout_width="0dp"
-	        android:layout_height="fill_parent"
-	        android:onClick="@string/method_button_click"
-	        android:text="@string/strReminder" />
-
-	    <Button
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="5"
+        android:gravity="center">
+	    <ImageButton
+			android:src="@drawable/alarm"
+			android:background="@null"
+			android:layout_width="0dip"
+			android:layout_height="fill_parent"
+			android:layout_weight="1"
+			android:id="@+id/button1"
+			android:onClick="@string/method_button_click"
+			android:text="@string/strReminder" />
+        
+        
+        <ImageButton
+	        android:src="@drawable/glucose_entry"
+	        android:background="@null"
 	        android:id="@+id/entrybtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
 	        android:onClick="@string/method_button_click"
 	        android:text="Glucose Entry" />
 	 </TableRow>
+	 <!-- Adding Text Layer -->
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:layout_marginTop="-15dp"
+        android:gravity="center">
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Reminders"
+		 />
+         
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Glucose Entry"
+		 />
+	 </TableRow>
 	 
-	 <TableRow >
-	     <Button
+	 
+	 <TableRow 
+	     android:layout_height="0dp"
+	     android:layout_weight="5"
+         android:gravity="center">
+	     <ImageButton
+	        android:src="@drawable/profile"
+	        android:background="@null"
 	        android:id="@+id/profilebtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:onClick="@string/method_button_click"
 	        android:text="Profile" />
 	    
-	    <Button
+	    <ImageButton
+	        android:src="@drawable/meds"
+	        android:background="@null"
 	        android:id="@+id/medsinsulinbtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:onClick="@string/method_button_click"
-	        android:text="Meds and Insuline" />
+	        android:text="Meds and Insulin" />
 	 </TableRow>
-	 <TableRow >
-	     <Button
+	 
+	 <!-- Adding Text Layer -->
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:layout_marginTop="-15dp"
+        android:gravity="center">
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Profile"
+		 />
+         
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Meds and Insulin"
+		 />
+	 </TableRow>
+	 
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="5"
+        android:gravity="center">
+	    
+	     <ImageButton
+	        android:src="@drawable/calculator"
+	        android:background="@null"
 	        android:id="@+id/calculatorbtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:onClick="@string/method_button_click"
 	        android:text="Calculator" />
 	    
-	    <Button
+	    <ImageButton
+	        android:src="@drawable/logbook_graph"
+	        android:background="@null"
 	        android:id="@+id/logstatisticsbtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:onClick="@string/method_button_click"
-	        android:text="Logbook and Stats" />
+	        android:text="Logbook and Graph" />
+	 </TableRow>
+	 
+	 <!-- Adding Text Layer -->
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:layout_marginTop="-15dp"
+        android:gravity="center">
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Calculator"
+		 />
+         
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Logbook and Graph"
+		 />
 	 </TableRow>
 	 	
-	 <TableRow >
-	     <Button
+	 <TableRow 
+	     android:layout_height="0dp"
+	    android:layout_weight="5"
+        android:gravity="center">
+	     <ImageButton
+	        android:src="@drawable/dct"
+	        android:background="@null"
 	        android:id="@+id/dctbtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
 	        android:onClick="@string/method_button_click"
-	        android:text="DCT" />
-	 </TableRow>
-	 
-	 <TableRow >
-	     <Button
+	        android:text="Diabetes Care Team" />
+	     
+	     <ImageButton
+	        android:src="@drawable/settings"
+	        android:background="@null"
 	        android:id="@+id/settingsbtn"
-	        android:layout_width="0dp"
+	        android:layout_width="0dip"
 	        android:layout_height="fill_parent"
 	        android:layout_weight="1"
 	        android:onClick="@string/method_button_click"
 	        android:text="Settings" />
+	 </TableRow>
+	 
+	 <!-- Adding Text Layer -->
+	 <TableRow 
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:layout_marginTop="-15dp"
+        android:gravity="center">
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Diabetes Care Team"
+		 />
+         
+         <TextView
+		 	android:layout_width="0dip"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:gravity="center"
+	        android:text="Settings"
+		 />
 	 </TableRow>
 	 
         

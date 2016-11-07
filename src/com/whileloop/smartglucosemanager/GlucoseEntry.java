@@ -88,12 +88,14 @@ public class GlucoseEntry {
 		long timeless;
 		
 		long milisForADay = 24*60*60*1000;
-		if(type.equals("Week")){
+		if(type.equals("7days")){
 			timeless = 7*milisForADay;
-		}else if(type.equals("Month")){
-			timeless = 31*milisForADay;
-		}else if(type.equals("Month")){
-			timeless = 365*milisForADay;
+		}else if(type.equals("14days")){
+			timeless = 14*milisForADay;
+		}else if(type.equals("30days")){
+			timeless = 30*milisForADay;
+		}else if(type.equals("90days")){
+			timeless = 90*milisForADay;
 		}else{
 			return results;
 		}

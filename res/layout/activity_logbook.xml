@@ -23,7 +23,8 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="LogBook"
+			    	android:textSize="18sp"
+		            android:text="Logbook"
 		            />
             <Button 
                  	android:layout_width="0dp"

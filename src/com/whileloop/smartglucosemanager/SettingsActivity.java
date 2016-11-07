@@ -30,12 +30,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
-	
+	Setting setting;
 	
 	
 	
@@ -44,88 +47,153 @@ public class SettingsActivity extends Activity {
 	//EditText docEmail;
 	String subject = "Smart Glucose Manager Export Logs";
 	String toEmail = "";
+	String fromEmail = "";
 	User user;
 	Button email_btn;
+	
+	RadioGroup unitRadioGroup;
+	CheckBox chkSound;
+	CheckBox chkVibrate;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		//docEmail = (EditText)findViewById(R.id.docEmailTxt);
+		
+		setting = Setting.getSetting(this);
+		if(setting==null){
+			setting = new Setting();
+		}
+		
 		user = User.getUser(this);
+		
 		if(user!=null){
 			toEmail = user.dcp_email;
+			fromEmail = user.email;
 		}
-		if(toEmail == null || toEmail.equals("")){
+		if(toEmail == null){
 			toEmail = "";
 		}
+		
+		if(fromEmail == null){
+			fromEmail = "";
+		}
+		
+		
 		context = this;
 		email_btn = (Button)findViewById(R.id.emaillogbtn);
+		chkSound = (CheckBox)findViewById(R.id.chksound);
+		chkVibrate = (CheckBox)findViewById(R.id.chkvibrate);
+		
+		chkSound.setChecked(setting.isSound);
+		chkVibrate.setChecked(setting.isVibrate);
+		
+		if(setting.unit==Setting.UNIT_TYPES[0]){
+			RadioButton rb = (RadioButton)findViewById(R.id.metricRadio);
+			rb.setChecked(true);
+		}else if(setting.unit==Setting.UNIT_TYPES[1]){
+			RadioButton rb = (RadioButton)findViewById(R.id.usRadio);
+			rb.setChecked(true);
+		}
+		
+		unitRadioGroup = (RadioGroup)findViewById(R.id.unitRadioGroup);
+		unitRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            	Log.d("chk", "id" + checkedId);
+
+                if (checkedId == R.id.metricRadio) {
+                	setting.unit = Setting.UNIT_TYPES[0];
+                    //some code
+                } else if (checkedId == R.id.usRadio) {
+                	setting.unit = Setting.UNIT_TYPES[1];
+                    //some code
+                }
+                Setting.saveSetting(context, setting);
+
+            }
+
+        });
+		
+		
+		
+		
 		OnClickListener dialogListener = new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				LayoutInflater li = LayoutInflater.from(context);
-				View promptsView = li.inflate(R.layout.prompt_duration, null);
-				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-						context);
-				alertDialogBuilder.setView(promptsView);
+				if(v.getId()==email_btn.getId()){
+					// TODO Auto-generated method stub
+					LayoutInflater li = LayoutInflater.from(context);
+					View promptsView = li.inflate(R.layout.prompt_duration, null);
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+							context);
+					alertDialogBuilder.setView(promptsView);
 
-				final RadioGroup userInput = (RadioGroup) promptsView.findViewById(R.id.duration_select);
-				// set dialog message
-				alertDialogBuilder.setCancelable(false).setPositiveButton("OK",
-					  new DialogInterface.OnClickListener() {
-					    public void onClick(DialogInterface dialog,int id) {
-						// get user input and set it to result
-						// edit text
-					    	int selectedId = userInput.getCheckedRadioButtonId();
-					    	String type = "All";
-					    	if(selectedId==R.id.all_logs){
-					    		type = "All";
-					    	}else if(selectedId==R.id.week_logs){
-					    		type = "Week";
-					    	}else if(selectedId==R.id.month_logs){
-					    		type = "Month";
-					    	}else if(selectedId==R.id.year_logs){
-					    		type = "Year";
-					    	}
-					    	StringBuilder csvContent = createCSVString(type);
-					    	String attachmentPath = "";
-					    	try{
-					    		attachmentPath = createCachedFile(context, csvContent);
-					    	}catch(IOException e){
-					    		
-					    	}
-					    	Log.v("CSV File Path",attachmentPath);
-					    	//String attachmentPath = saveCSV(type);
-					    	setEmail(type,attachmentPath);
-					    }
-					  })
-					.setNegativeButton("Cancel",
-					  new DialogInterface.OnClickListener() {
-					    public void onClick(DialogInterface dialog,int id) {
-						dialog.cancel();
-					    }
-					  });
+					final RadioGroup userInput = (RadioGroup) promptsView.findViewById(R.id.duration_select);
+					// set dialog message
+					alertDialogBuilder.setCancelable(false).setPositiveButton("OK",
+						  new DialogInterface.OnClickListener() {
+						    public void onClick(DialogInterface dialog,int id) {
+							// get user input and set it to result
+							// edit text
+						    	int selectedId = userInput.getCheckedRadioButtonId();
+						    	String type = "All";
+						    	if(selectedId==R.id.all_logs){
+						    		type = "All";
+						    	}else if(selectedId==R.id.day07_logs){
+						    		type = "7days";
+						    	}else if(selectedId==R.id.day14_logs){
+						    		type = "14days";
+						    	}else if(selectedId==R.id.day30_logs){
+						    		type = "30days";
+						    	}else if(selectedId==R.id.day90_logs){
+						    		type = "90days";
+						    	}
+						    	StringBuilder csvContent = createCSVString(type);
+						    	promptEmailSender(csvContent);
+						    	/*
+						    	String attachmentPath = "";
+						    	try{
+						    		attachmentPath = createCachedFile(context, csvContent);
+						    	}catch(IOException e){
+						    		
+						    	}
+						    	Log.v("CSV File Path",attachmentPath);
+						    	//String attachmentPath = saveCSV(type);
+						    	setEmail(type,attachmentPath);
+						    	*/
+						    }
+						  })
+						.setNegativeButton("Cancel",
+						  new DialogInterface.OnClickListener() {
+						    public void onClick(DialogInterface dialog,int id) {
+							dialog.cancel();
+						    }
+						  });
 
-				// create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
 
-				// show it
-				alertDialog.show();
+					// show it
+					alertDialog.show();
+				}
+				else if(v.getId()==chkSound.getId()){
+					Log.v("CHK SOUND CHANGE", chkSound.isChecked()+"");
+					setting.isSound = chkSound.isChecked();
+					Setting.saveSetting(context, setting);
+				}else if(v.getId()==chkVibrate.getId()){
+					Log.v("CHK VIBRATE CHANGE", chkVibrate.isChecked()+"");
+					setting.isVibrate = chkVibrate.isChecked();
+					Setting.saveSetting(context, setting);
+				}
+				
 			}
 		};
 		email_btn.setOnClickListener(dialogListener);
-		
+		chkSound.setOnClickListener(dialogListener);
+		chkVibrate.setOnClickListener(dialogListener);
 	}
-	/*
-	public void onButtonClick(View v){
-    	switch (v.getId()) {
-			case R.id.emaillogbtn:
-				//setEmail();
-			break;
-    	}
-	}*/
 	private void setEmail(String type,String attachmentPath){
 		Intent intent;
 		intent = new Intent(Intent.ACTION_SEND);
@@ -143,84 +211,9 @@ public class SettingsActivity extends Activity {
 		}
 	}
 	private String emailBody(String type){//"All","Week","Month","Year"
-		/*
-		DatabaseHelper databaseHelper = new DatabaseHelper(this);
-		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
-		entries = GlucoseEntry.LastEntries(entries, type);
-		String result = "";
-		//String result = "<table>";
-		//result += "<tr><th>Date</th><th>Time</th><th>Event</th><th>Value</th></tr>";
-		for(int i=0;i<entries.length;i++){
-			result += "<b>Record "+(i+1)+":</b><br>\n";
-			result += "Date:<i>"+entries[i].getDate()+":</i><br>\n";
-			result += "Time:<i>"+entries[i].getTime()+":</i><br>\n";
-			result += "Event:<i>"+entries[i].getTimeOfEvent()+":</i><br>\n";
-			result += "Value:<i>"+entries[i].getBg()+":</i><br><br>\n\n";
-			//result += "<tr>";
-			//result += "<td>"+entries[i].getDate()+"</td>";
-			//result += "<td>"+entries[i].getTime()+"</td>";
-			//result += "<td>"+entries[i].getTimeOfEvent()+"</td>";
-			//result += "<td>"+entries[i].getBg()+"</td>";
-			//result += "</tr>";
-		}
-		Log.v("Email Entries", result);
-		//result += "</table>";
-		return result;*/
 		return "See the attachment for "+type+" Logs";
 	}
-	/*
-	public String saveCSV(String type){
-		DatabaseHelper databaseHelper = new DatabaseHelper(this);
-		GlucoseEntry[] entries = databaseHelper.getGlucoseEntries();
-		entries = GlucoseEntry.LastEntries(entries, type);
-		
-		String path = context.getFilesDir().getPath().toString() + "myfile.csv";
-		CSVWriter csvWriter = null;
-		try 
-		{
-			csvWriter = new CSVWriter(new FileWriter(path), ',');
-			for(int i=0;i<entries.length;i++){
-				String result = "";
-				result += (i+1)+"#";
-				result += entries[i].getDate()+"#";
-				result += entries[i].getTime()+"#";
-				result += entries[i].getTimeOfEvent()+"#";
-				result += entries[i].getBg();
-				String[] res = result.split("#");
-				csvWriter.writeNext(res); 
-			}
-		    csvWriter.close();
-		    Log.v("CSV", "success");
-		    return path;
-		} 
-		catch (IOException e)
-		{
-			Log.e("CSV", e.getMessage());
-		    //error
-		}
-		return "";
-	}
-	public void readCSV(){
-		String path = context.getFilesDir().getPath().toString() + "myfile.csv";
-		try{
-			//Build reader instance
-		      CSVReader reader = new CSVReader(new FileReader(path), ',', '"', 1);
-		       
-		      //Read all rows at once
-		      List<String[]> allRows = reader.readAll();
-		       
-		      //Read CSV line by line and use the string array as you want
-		     for(String[] row : allRows){
-		        Log.v("Read CSV",Arrays.toString(row));
-		     }
-		     reader.close();
-		}catch(Exception e){
-			Log.e("CSV", e.getMessage());
-		}
-	}
-	*/
-	//caching
-	//content = id,name,time,..\n 1,umesh,12,..\n
+
 	public static String createCachedFile(Context context, StringBuilder content) throws IOException {
 		  String filePath = context.getCacheDir() + File.separator + CACHE_FILE_NAME;
 		  File cacheFile = new File(filePath);
@@ -267,6 +260,62 @@ public class SettingsActivity extends Activity {
 		
 		return sb;
 	}
+	//SEND VIA PHP SERVER SCRIPT
+	private void promptEmailSender(StringBuilder data){
+		LayoutInflater li = LayoutInflater.from(context);
+		View promptsView = li.inflate(R.layout.prompt_email, null);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				context);
+		alertDialogBuilder.setView(promptsView);
+		
+		final String logdata = data.toString();
+		//final RadioGroup userInput = (RadioGroup) promptsView.findViewById(R.id.duration_select);
+		final EditText userMail = (EditText)promptsView.findViewById(R.id.editUserMail);
+		final EditText receiverMail = (EditText)promptsView.findViewById(R.id.editReceiverMail);
+		final EditText noteText = (EditText)promptsView.findViewById(R.id.editNotes);
+		
+		receiverMail.setText(toEmail);
+		userMail.setText(fromEmail);
+		// set dialog message
+		alertDialogBuilder.setCancelable(false).setPositiveButton("OK",
+			  new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog,int id) {
+			    	// get user input and set it to result
+			    	
+			    	
+			    	/*
+			    	 * 
+			    	---------SEND EMAIL SCRIPT HERE------------
+			    	*
+			    	*
+			    	*/
+			    	String additional = noteText.getText().toString();
+			    	if(additional==null){
+			    		additional = "";
+			    	}
+			    	new ServerEmail(context).execute(
+			    			userMail.getText().toString(),
+			    			receiverMail.getText().toString(),
+			    			additional,
+			    			logdata
+			    			);
+			    }
+			  })
+			.setNegativeButton("Cancel",
+			  new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog,int id) {
+				dialog.cancel();
+			    }
+			  });
+
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+
+		// show it
+		alertDialog.show();
+	}
+	
+	
 	
 	public void onBackPress(View v){
 		onBackPressed();

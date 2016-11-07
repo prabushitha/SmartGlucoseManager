@@ -19,7 +19,8 @@
 			    	android:layout_height="wrap_content"
 			    	android:layout_weight="9"
 			    	android:gravity="center"
-		            android:text="LogBook and Statistics"
+			    	android:textSize="18sp"
+		            android:text="Logbook and Graph"
 		            />
             <Button 
                  	android:layout_width="0dp"
@@ -39,27 +40,87 @@
         android:layout_marginTop="50dp"
         android:stretchColumns="*" 
         >
-        
-        <TableRow >
-            <Button
-		        android:id="@+id/btnLogbook"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginTop="26dp"
+        <TableRow 
+		    android:layout_height="0dp"
+		    android:layout_weight="5"
+	        android:gravity="center">
+            <ImageButton
+                android:src="@drawable/logbook_graph"
+				android:background="@null"
+				android:layout_width="0dip"
+				android:layout_height="fill_parent"
+				android:layout_weight="1"
+				android:id="@+id/btnLogbook"
 		        android:onClick="onButtonPress"
-		        android:text="Log Book" 
+		        android:text="Logbook" 
 		    />
+            
+            <ImageButton
+                android:src="@drawable/graph"
+				android:background="@null"
+				android:layout_width="0dip"
+				android:layout_height="fill_parent"
+				android:layout_weight="1"
+		        android:id="@+id/btnSatistics"
+		        android:onClick="onButtonPress"
+		        android:text="Graph" 
+		    />
+            
         </TableRow>
         	
-        <TableRow >
-            <Button
-		        android:id="@+id/btnSatistics"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:onClick="onButtonPress"
-		        android:text="Statistics" 
-		    />
+        <TableRow 
+	        android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:layout_marginTop="-25dp"
+	        android:gravity="center">
+            <TextView
+			 	android:layout_width="0dip"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="1"
+		        android:gravity="center"
+		        android:text="Logbook"
+			 />
+	         
+	         <TextView
+			 	android:layout_width="0dip"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="1"
+		        android:gravity="center"
+		        android:text="Graph"
+			 />
         </TableRow>
+        
+        
+        
+        
+         	<TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
+	    	 <TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
+	    	<TableRow 
+	    	    android:layout_height="0dp"
+			    android:layout_weight="5"
+		        android:gravity="center"
+	    	    >
+            
+	    	</TableRow>
      </TableLayout>
     
 

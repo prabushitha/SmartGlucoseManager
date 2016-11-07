@@ -11,6 +11,9 @@ import android.content.Context;
 public class User implements Serializable{
 	
 	private static final String FILENAME = "user.ser";
+	
+	int unit = 0;
+	
 	String dob;
 	boolean isMale;
 	float height; //cm
@@ -50,7 +53,7 @@ public class User implements Serializable{
 			is.close();
 			fis.close();
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			System.out.println("get user "+e.getMessage());
 			user = null;
 		}
 		return user;

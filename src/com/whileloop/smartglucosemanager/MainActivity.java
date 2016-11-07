@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 				startActivity(i);
 			break;
 			case R.id.medsinsulinbtn:
-				i = new Intent(this,MedsAndInsulineActivity.class);
+				i = new Intent(this,MedsAndInsulineHomeActivity.class);
 				startActivity(i);
 			break;
 			case R.id.calculatorbtn:
@@ -82,7 +82,12 @@ public class MainActivity extends Activity {
 	}
 	@Override
      public void onBackPressed(){
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+		/*
 		Intent i = new Intent(this,MainActivity.class);
-		startActivity(i);
+		startActivity(i);*/
 	}
 }
